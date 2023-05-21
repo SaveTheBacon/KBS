@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:owl2="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+   xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+   xmlns:swrlb="http://www.w3.org/2003/11/swrlb#">
+   <owl:Ontology rdf:about=""/>
+   <owl:DatatypeProperty rdf:about="ISOPTIONAL">
+      <rdfs:range resource="http://www.w3.org/2001/XMLSchema#int"/>
+   </owl:DatatypeProperty>
+   <owl:DatatypeProperty rdf:about="HASPRICE">
+      <rdfs:range resource="http://www.w3.org/2001/XMLSchema#int"/>
+   </owl:DatatypeProperty>
+   <owl:DatatypeProperty rdf:about="NAME">
+      <rdfs:range resource="http://www.w3.org/2001/XMLSchema#string"/>
+   </owl:DatatypeProperty>
+   <owl:ObjectProperty rdf:about="ISINCLUDED">
+      <rdfs:domain>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="ITEM"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:domain>
+      <rdfs:range>
+         <owl:Class rdf:about="ITEM"/>
+      </rdfs:range>
+   </owl:ObjectProperty>
+   <owl2:AsymmetricProperty rdf:about="ISINCLUDED"/>
+   <owl:ObjectProperty rdf:about="ISCOMPATIBLEITEMITEM">
+      <owl:inverseOf rdf:resource="ISCOMPATIBLEITEMITEM"/>
+      <rdfs:domain>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="ITEM"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:domain>
+      <rdfs:range>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="ITEM"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:range>
+   </owl:ObjectProperty>
+   <owl:SymmetricProperty rdf:about="ISCOMPATIBLEITEMITEM"/>
+   <owl:ObjectProperty rdf:about="ISCOMPATIBLECARITEM">
+      <rdfs:domain>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="CARTYPE"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:domain>
+      <rdfs:range>
+         <owl:Class rdf:about="ITEM"/>
+      </rdfs:range>
+   </owl:ObjectProperty>
+   <owl:Class rdf:about="ICEV">
+      <owl:disjointWith>
+         <owl:Class rdf:about="EV"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="INTERIOROPTION">
+      <owl:disjointWith>
+         <owl:Class rdf:about="EXTERIOROPTION"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="INTERIOROPTION">
+      <owl:disjointWith>
+         <owl:Class rdf:about="CARTYPE"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="EXTERIOROPTION">
+      <owl:disjointWith>
+         <owl:Class rdf:about="CARTYPE"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="SAFETY">
+      <owl:disjointWith>
+         <owl:Class rdf:about="TRIM"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="SAFETY">
+      <owl:disjointWith>
+         <owl:Class rdf:about="TECH"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="SAFETY">
+      <owl:disjointWith>
+         <owl:Class rdf:about="SEATS"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="TRIM">
+      <owl:disjointWith>
+         <owl:Class rdf:about="TECH"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="TRIM">
+      <owl:disjointWith>
+         <owl:Class rdf:about="SEATS"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="TECH">
+      <owl:disjointWith>
+         <owl:Class rdf:about="SEATS"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="ROOF">
+      <owl:disjointWith>
+         <owl:Class rdf:about="HEADLIGHTS"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="ROOF">
+      <owl:disjointWith>
+         <owl:Class rdf:about="PAINT"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="ROOF">
+      <owl:disjointWith>
+         <owl:Class rdf:about="WHEELS"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="HEADLIGHTS">
+      <owl:disjointWith>
+         <owl:Class rdf:about="PAINT"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="HEADLIGHTS">
+      <owl:disjointWith>
+         <owl:Class rdf:about="WHEELS"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="PAINT">
+      <owl:disjointWith>
+         <owl:Class rdf:about="WHEELS"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                           <owl:Class rdf:about="EV"/>
+                           <owl:Class rdf:about="ICEV"/>
+                        </owl:unionOf>
+                     </owl:Class>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class rdf:about="CARTYPE"/>
+            </owl:unionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                           <owl:Class rdf:about="WHEELS"/>
+                           <owl:Class rdf:about="PAINT"/>
+                           <owl:Class rdf:about="HEADLIGHTS"/>
+                           <owl:Class rdf:about="ROOF"/>
+                        </owl:unionOf>
+                     </owl:Class>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class rdf:about="EXTERIOROPTION"/>
+            </owl:unionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                           <owl:Class rdf:about="SEATS"/>
+                           <owl:Class rdf:about="TECH"/>
+                           <owl:Class rdf:about="TRIM"/>
+                           <owl:Class rdf:about="SAFETY"/>
+                        </owl:unionOf>
+                     </owl:Class>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class rdf:about="INTERIOROPTION"/>
+            </owl:unionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                           <owl:Class rdf:about="EXTERIOROPTION"/>
+                           <owl:Class rdf:about="INTERIOROPTION"/>
+                        </owl:unionOf>
+                     </owl:Class>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class rdf:about="ITEM"/>
+            </owl:unionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="ICEV">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="EV"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="INTERIOROPTION">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="EXTERIOROPTION"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="CARTYPE"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="EXTERIOROPTION">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="CARTYPE"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="SAFETY">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="TRIM"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="TECH"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="SEATS"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="TRIM">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="TECH"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="SEATS"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="TECH">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="SEATS"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="ROOF">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="HEADLIGHTS"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="PAINT"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="WHEELS"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="HEADLIGHTS">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="PAINT"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="WHEELS"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="PAINT">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="WHEELS"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <EV rdf:about="TAYCAN">
+      <ISCOMPATIBLECARITEM rdf:resource="WOODTRIM"/>
+      <ISCOMPATIBLECARITEM rdf:resource="LEDLIGHTS"/>
+      <ISCOMPATIBLECARITEM rdf:resource="GLASSROOF"/>
+      <ISCOMPATIBLECARITEM rdf:resource="PARKINGASSISTANT"/>
+      <ISCOMPATIBLECARITEM rdf:resource="BLINDSPOTMONITOR"/>
+      <ISCOMPATIBLECARITEM rdf:resource="PARKINGSENSORS"/>
+      <ISCOMPATIBLECARITEM rdf:resource="STARTERTECHPACK"/>
+      <ISCOMPATIBLECARITEM rdf:resource="CAMERA"/>
+      <ISCOMPATIBLECARITEM rdf:resource="ACC"/>
+      <ISCOMPATIBLECARITEM rdf:resource="ELECTRICBOOT"/>
+      <ISCOMPATIBLECARITEM rdf:resource="HEATEDSEATS"/>
+      <ISCOMPATIBLECARITEM rdf:resource="REGULARSEATS"/>
+      <ISCOMPATIBLECARITEM rdf:resource="PEARLESCENTPAINT"/>
+      <ISCOMPATIBLECARITEM rdf:resource="WHEELS21"/>
+      <ISCOMPATIBLECARITEM rdf:resource="WHEELS20"/>
+      <ISCOMPATIBLECARITEM rdf:resource="PANORAMICROOF"/>
+      <ISCOMPATIBLECARITEM rdf:resource="FULLTECHPACK"/>
+      <ISCOMPATIBLECARITEM rdf:resource="MATRIXLEDLIGHTS"/>
+      <ISCOMPATIBLECARITEM rdf:resource="NAPPALEATHER"/>
+      <ISCOMPATIBLECARITEM rdf:resource="FULLSAFETYSYSTEM"/>
+      <ISCOMPATIBLECARITEM rdf:resource="SPORTSEATS"/>
+   </EV>
+   <TRIM rdf:about="WOODTRIM">
+      <ISINCLUDED rdf:resource="NAPPALEATHER"/>
+   </TRIM>
+   <HEADLIGHTS rdf:about="LEDLIGHTS">
+      <ISINCLUDED rdf:resource="MATRIXLEDLIGHTS"/>
+   </HEADLIGHTS>
+   <ROOF rdf:about="GLASSROOF">
+      <ISINCLUDED rdf:resource="PANORAMICROOF"/>
+   </ROOF>
+   <ICEV rdf:about="MACAN">
+      <ISCOMPATIBLECARITEM rdf:resource="REGULARSEATS"/>
+      <ISCOMPATIBLECARITEM rdf:resource="PARKINGSENSORS"/>
+      <ISCOMPATIBLECARITEM rdf:resource="METALTRIM"/>
+      <ISCOMPATIBLECARITEM rdf:resource="ELECTRICBOOT"/>
+      <ISCOMPATIBLECARITEM rdf:resource="METALLICPAINT"/>
+      <ISCOMPATIBLECARITEM rdf:resource="WHEELS20"/>
+      <ISCOMPATIBLECARITEM rdf:resource="WHEELS19"/>
+      <ISCOMPATIBLECARITEM rdf:resource="CARBONROOF"/>
+      <ISCOMPATIBLECARITEM rdf:resource="STARTERTECHPACK"/>
+      <ISCOMPATIBLECARITEM rdf:resource="LEDLIGHTS"/>
+      <ISCOMPATIBLECARITEM rdf:resource="REGULARLEATHER"/>
+      <ISCOMPATIBLECARITEM rdf:resource="PARKINGASSISTANT"/>
+      <ISCOMPATIBLECARITEM rdf:resource="HEATEDSEATS"/>
+   </ICEV>
+   <SEATS rdf:about="REGULARSEATS">
+      <rdf:type>
+         <owl:Restriction>
+            <owl:onProperty rdf:resource="HASPRICE"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</owl:hasValue>
+         </owl:Restriction>
+      </rdf:type>
+      <rdf:type>
+         <owl:Restriction>
+            <owl:onProperty rdf:resource="ISOPTIONAL"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</owl:hasValue>
+         </owl:Restriction>
+      </rdf:type>
+      <ISINCLUDED rdf:resource="SPORTSEATS"/>
+      <ISINCLUDED rdf:resource="HEATEDSEATS"/>
+   </SEATS>
+   <SAFETY rdf:about="PARKINGSENSORS">
+      <ISINCLUDED rdf:resource="FULLSAFETYSYSTEM"/>
+      <ISINCLUDED rdf:resource="PARKINGASSISTANT"/>
+   </SAFETY>
+   <TRIM rdf:about="METALTRIM">
+      <ISINCLUDED rdf:resource="REGULARLEATHER"/>
+   </TRIM>
+   <TECH rdf:about="ELECTRICBOOT">
+      <ISINCLUDED rdf:resource="FULLTECHPACK"/>
+      <ISINCLUDED rdf:resource="STARTERTECHPACK"/>
+   </TECH>
+   <SAFETY rdf:about="PARKINGASSISTANT">
+      <ISINCLUDED rdf:resource="FULLSAFETYSYSTEM"/>
+   </SAFETY>
+   <SAFETY rdf:about="BLINDSPOTMONITOR">
+      <rdf:type>
+         <owl:Restriction>
+            <owl:onProperty rdf:resource="HASPRICE"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#int">300</owl:hasValue>
+         </owl:Restriction>
+      </rdf:type>
+      <rdf:type>
+         <owl:Restriction>
+            <owl:onProperty rdf:resource="ISOPTIONAL"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:hasValue>
+         </owl:Restriction>
+      </rdf:type>
+      <ISINCLUDED rdf:resource="FULLSAFETYSYSTEM"/>
+   </SAFETY>
+   <TECH rdf:about="STARTERTECHPACK">
+      <ISINCLUDED rdf:resource="FULLTECHPACK"/>
+   </TECH>
+   <TECH rdf:about="CAMERA">
+      <ISINCLUDED rdf:resource="FULLTECHPACK"/>
+   </TECH>
+   <TECH rdf:about="ACC">
+      <ISINCLUDED rdf:resource="FULLTECHPACK"/>
+   </TECH>
+   <SEATS rdf:about="HEATEDSEATS">
+      <rdf:type>
+         <owl:Restriction>
+            <owl:onProperty rdf:resource="HASPRICE"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#int">500</owl:hasValue>
+         </owl:Restriction>
+      </rdf:type>
+      <rdf:type>
+         <owl:Restriction>
+            <owl:onProperty rdf:resource="ISOPTIONAL"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:hasValue>
+         </owl:Restriction>
+      </rdf:type>
+      <ISINCLUDED rdf:resource="SPORTSEATS"/>
+   </SEATS>
+   <SEATS rdf:about="SPORTSEATS">
+   </SEATS>
+   <TECH rdf:about="FULLTECHPACK">
+   </TECH>
+   <SAFETY rdf:about="FULLSAFETYSYSTEM">
+      <rdf:type>
+         <owl:Restriction>
+            <owl:onProperty rdf:resource="HASPRICE"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#int">900</owl:hasValue>
+         </owl:Restriction>
+      </rdf:type>
+      <rdf:type>
+         <owl:Restriction>
+            <owl:onProperty rdf:resource="ISOPTIONAL"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:hasValue>
+         </owl:Restriction>
+      </rdf:type>
+   </SAFETY>
+   <PAINT rdf:about="METALLICPAINT">
+   </PAINT>
+   <WHEELS rdf:about="WHEELS20">
+   </WHEELS>
+   <WHEELS rdf:about="WHEELS19">
+   </WHEELS>
+   <ROOF rdf:about="CARBONROOF">
+   </ROOF>
+   <TRIM rdf:about="REGULARLEATHER">
+   </TRIM>
+   <PAINT rdf:about="PEARLESCENTPAINT">
+   </PAINT>
+   <WHEELS rdf:about="WHEELS21">
+   </WHEELS>
+   <ROOF rdf:about="PANORAMICROOF">
+   </ROOF>
+   <HEADLIGHTS rdf:about="MATRIXLEDLIGHTS">
+   </HEADLIGHTS>
+   <TRIM rdf:about="NAPPALEATHER">
+   </TRIM>
+</rdf:RDF>

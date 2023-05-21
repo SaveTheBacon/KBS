@@ -1,0 +1,568 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/stefan/ontologies/2023/4/untitled-ontology-2"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/stefan/ontologies/2023/4/untitled-ontology-2">
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#denotes"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#hasInterpretant"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#hasContent"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/boxer/boxer.owl#possibleType"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/boxer/boxing.owl#hasModality"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasQuality"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#boxerpos"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/quantifiers.owl#hasQuantifier"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/vn/abox/role/Recipient"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/vn/abox/role/Theme"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="rdfs:subClassOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="owl:equivalentClass"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#a"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_34_with"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Only"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antiviral_1"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/vn/data/Treat_13042100"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_14_18_only"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#IN"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antibiotic"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antiviral"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#RB"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Treat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#StringDocuverse"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antibiotic"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_0_9_Influenza"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antiviral"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#VBN"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/vn/abox/role/Theme"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antibiotic_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://dbpedia.org/resource/Influenza"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="owl:Thing"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#NNS"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#NNP"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#v"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/quantifiers.owl#multiple"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Treat"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/boxer/boxing.owl#Possible"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Influenza"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#n"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_25_29_with"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Treat"/>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/vn/data/Treat_13042100"/>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Treat"/>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antibiotic"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antibiotic_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antiviral"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antiviral_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#StringDocuverse"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_0_9_Influenza"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_14_18_only"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_25_29_with"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_34_with"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.essepuntato.it/2008/12/earmark#PointerRange"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Treat"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+    </ClassAssertion>
+    <SameIndividual>
+        <NamedIndividual IRI="http://dbpedia.org/resource/Influenza"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Influenza"/>
+    </SameIndividual>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#boxerpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antibiotic"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#n"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#boxerpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antiviral"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#n"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/boxer/boxer.owl#possibleType"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Influenza"/>
+        <NamedIndividual abbreviatedIRI="owl:Thing"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#boxerpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Only"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#a"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#boxerpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Treat"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#v"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/quantifiers.owl#hasQuantifier"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antibiotic_1"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/quantifiers.owl#multiple"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/quantifiers.owl#hasQuantifier"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antiviral_1"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/quantifiers.owl#multiple"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#denotes"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_0_9_Influenza"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Influenza"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_0_9_Influenza"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_0_9_Influenza"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#NNP"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#hasInterpretant"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_14_18_only"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Only"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_14_18_only"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_14_18_only"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#RB"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#denotes"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#hasInterpretant"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Treat"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#VBN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#denotes"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#hasInterpretant"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Treat"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#VBN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#hasInterpretant"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_25_29_with"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/vn/abox/role/Theme"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_25_29_with"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_25_29_with"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#IN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#hasInterpretant"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_34_with"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/vn/abox/role/Theme"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_34_with"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_34_with"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#IN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#denotes"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antibiotic_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#hasInterpretant"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antibiotic"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#NNS"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#denotes"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antiviral_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ontologydesignpatterns.org/cp/owl/semiotics.owl#hasInterpretant"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Antiviral"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.essepuntato.it/2008/12/earmark#refersTo"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#pennpos"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/pos.owl#NNS"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/boxer/boxing.owl#hasModality"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/boxer/boxing.owl#Possible"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasQuality"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Only"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/vn/abox/role/Recipient"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#Influenza"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/vn/abox/role/Theme"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antibiotic_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.ontologydesignpatterns.org/ont/vn/abox/role/Theme"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#treat_1"/>
+        <NamedIndividual IRI="http://www.ontologydesignpatterns.org/ont/fred/domain.owl#antiviral_1"/>
+    </ObjectPropertyAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#hasContent"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse</IRI>
+        <Literal>Influenza can be treated with antibiotics</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#hasContent"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#docuverse</IRI>
+        <Literal>Influenza can only be treated with antivirals</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_0_9_Influenza</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_0_9_Influenza</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">9</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_0_9_Influenza</IRI>
+        <Literal>Influenza</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_14_18_only</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">14</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_14_18_only</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">18</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_14_18_only</IRI>
+        <Literal>only</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">17</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">24</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_17_24_treated</IRI>
+        <Literal>treated</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">22</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">29</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_22_29_treated</IRI>
+        <Literal>treated</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_25_29_with</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">25</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_25_29_with</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">29</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_25_29_with</IRI>
+        <Literal>with</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_34_with</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">30</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_34_with</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">34</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_34_with</IRI>
+        <Literal>with</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">30</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">41</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_30_41_antibiotics</IRI>
+        <Literal>antibiotics</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#begins"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">35</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.essepuntato.it/2008/12/earmark#ends"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">45</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://www.ontologydesignpatterns.org/ont/fred/domain.owl#offset_35_45_antivirals</IRI>
+        <Literal>antivirals</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+

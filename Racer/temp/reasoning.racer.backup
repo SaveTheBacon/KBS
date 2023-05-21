@@ -1,0 +1,18 @@
+(full-reset)
+(in-knowledge-base test)
+(set-unique-name-assumption t)
+(equivalent A (and B C))
+(instance i B)
+(instance i C)
+(concept-instances (and b c))
+(concept-instances A)
+(individual-instance? i A)
+(individual-types i)
+(get-individual-pmodel '(and b c) (evaluate (current-abox)))
+
+(all-individuals)
+(realize-abox)
+(compute-all-implicit-role-fillers)
+(all-role-assertions)
+
+

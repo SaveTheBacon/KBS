@@ -1,0 +1,38 @@
+(full-reset)
+
+(DEFINE-PRIMITIVE-ROLE Neurodiverse)
+(DEFINE-PRIMITIVE-ROLE Cause)
+(DEFINE-PRIMITIVE-ROLE hasModality)
+(DEFINE-PRIMITIVE-ROLE hasQuality)
+
+(IMPLIES Affect Event)
+(DEFINE-CONCEPT Affect Affect_31010000)
+
+(IMPLIES Adolescent (not Adult))
+(IMPLIES Child (not Adult))
+(IMPLIES Person (or Adolescent Child Adult))
+; humans
+(INSTANCE adolescent_1 Adolescent)
+(INSTANCE child_1 Child)
+(INSTANCE adult_1 Adult)
+(INSTANCE affect_1 Affect)
+
+(RELATED affect_1 Possible hasModality)
+(RELATED affect_1 Only hasQuality)
+(RELATED affect_1 Cleaning-Compulsive-Disorder Cause)
+(RELATED affect_1 child_1 Neurodiverse)
+(RELATED affect_1 adult_1 Neurodiverse)
+(RELATED affect_1 adolescent_1 Neurodiverse)
+
+(define-rule (?z Adult) 
+    (and 
+        (?x Only hasQuality)
+        (?x ?y Neurodiverse)
+        (?x ?z Neurodiverse)
+        (?y Adult)        
+))
+
+(run-all-rules)
+
+;(tbox-coherent?) -> T
+;(abox-consistent?) -> NIL

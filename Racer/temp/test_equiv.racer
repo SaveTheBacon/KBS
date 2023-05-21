@@ -1,0 +1,21 @@
+;Test equiv
+
+(full-reset)
+(signature :atomic-concepts (a b c)
+           :roles (
+                   (r :feature t)
+                   )
+           :individuals (i))
+
+(equivalent a (and b c)) 
+(instance i b)
+(instance i c)
+(concept-instances a) 
+
+
+;Test domain and range
+(full-reset)
+(define-primitive-role r :domain A :range B)
+(related i j r)
+(concept-instances A)
+(concept-instances B) ;???? why nil

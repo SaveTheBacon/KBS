@@ -1,0 +1,167 @@
+(full-reset)
+
+; --- CONCEPTS ---
+; Electric and Internal Combustion are different
+(implies
+    (or EV ICEV)
+CarType)
+(disjoint EV ICEV)
+
+; These are Exterior options
+(implies 
+    (or Wheels Paint Headlights Roof) 
+ExteriorOption)
+(disjoint Wheels Paint Headlights Roof)
+
+; These are Interior options
+(implies 
+    (or Seats Tech Trim Safety)
+InteriorOption)
+(disjoint Seats Tech Trim Safety)
+
+; all are items
+(implies
+    (or ExteriorOption InteriorOption)
+Item)
+
+; all top categories are different
+(disjoint CarType ExteriorOption InteriorOption)
+
+
+; --- ATTRIBUTES ---
+; Attributes of a car Model
+(define-concrete-domain-attribute name :type string)
+
+; Attributes of each part
+(define-concrete-domain-attribute hasPrice :type integer)
+(define-concrete-domain-attribute isOptional :type integer)
+
+; --- ROLES ---
+(define-primitive-role isCompatibleCarItem :domain CarType :range Item)
+(define-primitive-role isCompatibleItemItem :domain Item :range Item :symmetric t)
+(define-primitive-role isIncluded :domain Item :range Item :asymmetric t)
+
+
+; --- RULES ---
+; Is a car is compatibile with an item that includes another item,
+; the car is also compatible withe the second item
+(define-rule (?car ?item2 isCompatibleCarItem)
+    (and (?car CarType) (?item1 Item) (?item2 Item) (not (same-as ?item1 ?item2))
+    (?car ?item1 isCompatibleCarItem) (?item2 ?item1 isIncluded)) 
+)
+
+; Is an item includes another item, that in turn includes another item,
+; the first and last items are compatible
+(define-rule (?item1 ?item3 isIncluded)
+    (and (?item1 Item) (?item2 Item) (?item3 Item) (not (same-as ?item1 ?item2)) (not (same-as ?item2 ?item3)) (not (same-as ?item1 ?item3))
+    (?item1 ?item2 isIncluded) (?item2 ?item3 isIncluded))
+)
+
+; --- MODELS ---
+(instance Taycan EV)
+(instance Macan ICEV)
+
+; --- WHEELS ---
+(instance Wheels19 Wheels)
+(instance Wheels20 Wheels)
+(instance Wheels21 Wheels)
+
+; --- PAINT ---
+(instance MetallicPaint Paint)
+(instance PearlescentPaint Paint)
+
+; --- HEADLIGHTS ---
+(instance LEDLights Headlights)
+(instance MatrixLEDLights Headlights)
+
+; --- ROOF ---
+(instance CarbonRoof Roof)
+(instance GlassRoof Roof)
+(instance PanoramicRoof Roof)
+
+; --- SEATS ---
+(instance HeatedSeats Seats)
+(instance HeatedSeats (equal isOptional 1))
+(instance HeatedSeats (equal hasPrice 500))
+
+(instance RegularSeats Seats)
+(instance RegularSeats (equal isOptional 0))
+(instance RegularSeats (equal hasPrice 0))
+
+(instance SportSeats Seats)
+
+; --- TECH ---
+(instance ElectricBoot Tech)
+(instance Camera Tech)
+(instance ACC Tech)
+(instance FullTechPack Tech)
+(instance StarterTechPack Tech)
+
+; --- TRIM ---
+(instance MetalTrim Trim)
+(instance WoodTrim Trim)
+(instance RegularLeather Trim)
+(instance NappaLeather Trim)
+
+; --- SAFETY ---
+(instance BlindSpotMonitor Safety)
+(instance BlindSpotMonitor (equal isOptional 1))
+(instance BlindSpotMonitor (equal hasPrice 300))
+
+(instance FullSafetySystem Safety)
+(instance FullSafetySystem (equal isOptional 1))
+(instance FullSafetySystem (equal hasPrice 900))
+
+(instance ParkingSensors Safety)
+(instance ParkingAssistant Safety)
+
+; --- PACKS & INCLUSIONS ---
+
+; Seats packs
+(related RegularSeats HeatedSeats isIncluded)
+(related HeatedSeats SportSeats isIncluded)
+
+; Light packs
+(related LEDLights MatrixLEDLights isIncluded)
+
+; Roof packs
+(related GlassRoof PanoramicRoof isIncluded)
+
+; Tech packs
+(related ElectricBoot StarterTechPack isIncluded)
+(related StarterTechPack FullTechPack isIncluded)
+(related Camera FullTechPack isIncluded)
+(related ACC FullTechPack isIncluded)
+
+; Trim packs
+(related MetalTrim RegularLeather isIncluded)
+(related WoodTrim NappaLeather isIncluded)
+
+; Safety Pack
+(related ParkingSensors ParkingAssistant isIncluded)
+(related ParkingAssistant FullSafetySystem isIncluded)
+(related BlindSpotMonitor FullSafetySystem isIncluded)
+
+; --- COMPATIBILITIES ---
+(related Taycan SportSeats isCompatibleCarItem)
+(related Taycan FullSafetySystem isCompatibleCarItem)
+(related Taycan NappaLeather isCompatibleCarItem)
+(related Taycan MatrixLEDLights isCompatibleCarItem)
+(related Taycan FullTechPack isCompatibleCarItem)
+(related Taycan PanoramicRoof isCompatibleCarItem)
+(related Taycan Wheels20 isCompatibleCarItem)
+(related Taycan Wheels21 isCompatibleCarItem)
+(related Taycan PearlescentPaint isCompatibleCarItem)
+
+(related Macan HeatedSeats isCompatibleCarItem)
+(related Macan ParkingAssistant isCompatibleCarItem)
+(related Macan RegularLeather isCompatibleCarItem)
+(related Macan LEDLights isCompatibleCarItem)
+(related Macan StarterTechPack isCompatibleCarItem)
+(related Macan CarbonRoof isCompatibleCarItem)
+(related Macan Wheels19 isCompatibleCarItem)
+(related Macan Wheels20 isCompatibleCarItem)
+(related Macan MetallicPaint isCompatibleCarItem)
+
+(execute-all-rules)
+(reexecute-all-rules)

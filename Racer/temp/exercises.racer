@@ -1,0 +1,56 @@
+(full-reset)
+(instance s0 A)
+(instance s0 B)
+
+(instance s1 A)
+(instance s1 (not B))
+
+(instance s2 (not A))
+(instance s2 B)
+
+(instance s3 (not A))
+(instance s3 (not B))
+
+(instance s4 (not A))
+(instance s4 (not B))
+
+(instance s5 A)
+(instance s5 B)
+
+(related s0 s1 r)
+(related s0 s2 r)
+
+(related s1 s3 r)
+(related s1 s5 r)
+
+(related s2 s4 r)
+
+(related s4 s5 r)
+
+(related s4 s5 r)
+
+(concept-instances top)
+(concept-instances bottom)
+(concept-instances A)
+(concept-instances B)
+(concept-instances (and A B))
+(concept-instances (or A B))
+(concept-instances (not A))
+(concept-instances (some r A))
+
+(realize-abox)
+%(close-triple-store)
+(concept-instances (all r (not B)))
+(concept-instances (all r (or A B)))
+
+(individual-types s0)
+
+
+(full-reset)
+
+(concept-equivalent? (all r (and A B)) (and (all r a ) (all r b)))
+(concept-equivalent? (all r (or A B)) (or (all r a ) (all r b)))
+(concept-equivalent? (some r (and A B)) (and (some r a ) (some r b)))
+(concept-equivalent? (some r (or A B)) (or (some r a ) (some r b)))
+
+

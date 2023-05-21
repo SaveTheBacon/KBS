@@ -1,0 +1,8 @@
+INTREBARI:
+Cum sa extindem de acum
+Ce reguli sa punem
+Ce interogari sa punem (Ai simptom x y ce boala ii)
+
+TODO:
+Spargem simptomele in mai multe subsimptome
+Populam ontologia cu mai multe simptome/boli/whatever

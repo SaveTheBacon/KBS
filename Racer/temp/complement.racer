@@ -1,0 +1,9 @@
+(full-reset)
+(implies X1 (some hasChild (not Male)))
+(implies X2 (all hasChild (not Male)))
+(implies Y (all hasChild Male))
+
+(concept-subsumes? X Y)
+(concept-subsumes? Y X)
+(concept-subsumes? X1 Y)
+(concept-subsumes? Y X1)

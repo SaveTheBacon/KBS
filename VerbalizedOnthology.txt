@@ -1,0 +1,87 @@
+Every SYMPTOM HASCAUSE something that is not a VIRUS.
+Everything that HASCAUSE something that is not a VIRUS is a SYMPTOM.
+
+Every PREVENTION is something that is not a SYMPTOM and that is not a TREATMENT and that is not a VIRUS.
+
+Every PREVENTION HASVACCINE a VIRUS.
+
+No SYMPTOM is a VIRUS.
+
+Every TREATMENT is something that is not a SYMPTOM and that is not a VIRUS.
+
+Every TYPEA is an INFLUENZA.
+
+Every TYPEB is an INFLUENZA.
+
+Every TYPEC is an INFLUENZA.
+
+Every TYPED is an INFLUENZA.
+
+No VIRUS is a PREVENTION.
+
+No VIRUS is a SYMPTOM.
+
+Everything is something that CANSPREADBYDIRECTCONTACT nothing but VIRUS or that does not HASCAUSE a VIRUS.
+
+No PREVENTION is a SYMPTOM.
+
+No PREVENTION is a TREATMENT.
+
+No PREVENTION is a VIRUS.
+
+No SYMPTOM is a TREATMENT.
+
+No SYMPTOM is a VIRUS.
+
+No TREATMENT is a VIRUS.
+
+ANTIBIOTIC is a TREATMENT.
+
+ANTIVIRAL is a TREATMENT.
+
+CHICKENPOX is a VIRUS.
+
+COUGH is a SYMPTOM.
+
+FEVER is a SYMPTOM.
+
+INFLUENZA is a VIRUS.
+
+MEASLES is a VIRUS.
+
+RASH is a SYMPTOM.
+
+VACCINE is a PREVENTION.
+
+CHICKENPOX HASPREVENTION VACCINE.
+
+CHICKENPOX HASSYMPTOM RASH.
+
+INFLUENZA HASPREVENTION VACCINE.
+
+INFLUENZA HASSYMPTOM COUGH.
+
+INFLUENZA HASSYMPTOM FEVER.
+
+INFLUENZA HASTREATMENT ANTIVIRAL.
+
+MEASLES HASPREVENTION VACCINE.
+
+MEASLES HASSYMPTOM FEVER.
+
+MEASLES HASSYMPTOM RASH.
+
+Everything that CANSPREADBYDIRECTCONTACT something is something that CANSPREADBYDIRECTCONTACT nothing but VIRUS or that does not HASCAUSE a VIRUS.
+
+Everything that HASPREVENTION something is a VIRUS.
+
+Everything that HASSYMPTOM something is a VIRUS.
+
+Everything that HASTREATMENT something is a VIRUS.
+
+Everything that is HASPREVENTION by something is a PREVENTION.
+
+Everything that is HASSYMPTOM by something is a SYMPTOM.
+
+Everything that is HASTREATMENT by something is a TREATMENT.
+

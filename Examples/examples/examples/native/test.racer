@@ -1,0 +1,4 @@
+(full-reset)
+(implies A B)
+(instance I A)
+(concept-instances B)

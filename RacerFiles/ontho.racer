@@ -1,0 +1,60 @@
+(full-reset)
+
+; Define concepts and instances
+
+(instance Influenza Virus)
+(instance Measles Virus)
+(instance Chickenpox Virus)
+
+(implies TypeA Influenza)
+(implies TypeB Influenza)
+(implies TypeC Influenza)
+(implies TypeD Influenza)
+
+(instance Fever Symptom)
+(instance Cough Symptom)
+(instance Rash Symptom)
+
+(instance Antiviral Treatment)
+(instance Antibiotic Treatment)
+
+
+(instance Vaccine Prevention)
+
+(define-primitive-role hasSymptom :domain Virus :range Symptom)
+(define-primitive-role hasTreatment :domain Virus :range Treatment)
+(define-primitive-role hasPrevention :domain Virus :range Prevention)
+
+(related Influenza Fever hasSymptom)
+(related Influenza Cough hasSymptom)
+(related Influenza Antiviral hasTreatment)
+(related Influenza Vaccine hasPrevention)
+
+(related Measles Fever hasSymptom)
+(related Measles Rash hasSymptom)
+(related Measles Vaccine hasPrevention)
+
+(related Chickenpox Rash hasSymptom)
+(related Chickenpox Vaccine hasPrevention)
+
+; Define logical relationships between concepts and instances
+;(implies Virus (some hasSymptom Symptom))
+;(implies Virus (some hasTreatment Treatment))
+;(implies Virus (some hasPrevention Prevention))
+
+(equivalent Symptom (some hasCause (not Virus)))
+
+(implies (some hasCause Virus) (all canSpreadByDirectContact Virus))
+
+;(implies Virus (and (some hasSymptom top) (some hasTreatment top)))
+
+(implies Prevention (some hasVaccine Virus))
+
+(disjoint Virus Symptom Treatment Prevention)
+(disjoint Symptom Virus)
+(disjoint Prevention Virus)
+(concept-instances Virus)
+(concept-instances Treatment)
+(concept-instances Prevention)
+(concept-instances Symptom)
+

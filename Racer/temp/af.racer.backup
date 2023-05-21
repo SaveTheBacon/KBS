@@ -1,0 +1,11 @@
+(full-reset)
+
+(instance a1 Arg)
+(instance a2 Arg)
+(instance a3 Arg)
+
+(related a1 a2 attacks)
+(related a2 a3 attacks)
+
+(abox-consistent?)
+

@@ -1,0 +1,20 @@
+(full-reset)
+;Implicit knowledege in ontologies
+
+;(equivalent Elephant (and (exacty 2 hasParent Elephant)
+;			 (all hasParent Elephant)))
+(instance dumbo elephant)
+;It folows that Dumbo has two parents that are elephants.
+;There must be mrsJumbo and dumbosFather which are elephants and the parents of jumbo
+;Continuing the induction of implicit knowledge, dumbo parents must have two parents.
+
+;We need a closure operator
+;Domain closure asumptiom
+
+(concept-subsumes? (and (some r A) (all r B)) (some r (and A B)))
+(concept-subsumes? (and (some r (and A B)) (some r A) (all r B)) )
+(concept-subsumes? (all r C) (all r (and C B)))
+
+(implies A B)
+(concept-subsumes? A B)
+(concept-subsumes? B A)

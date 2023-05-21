@@ -1,0 +1,67 @@
+(abox-consistent?)
+(tbox-cyclic?)
+(tbox-coherent?)
+
+(realize-abox)
+(classify-tbox)
+
+(evaluate (length (all-individuals)))
+(evaluate (length (all-atomic-concepts)))
+(evaluate (length (all-roles)))
+(evaluate (length (all-rules)))
+
+(all-concept-assertions)
+(all-role-assertions)
+(all-constraints)
+
+(describe-tbox)
+(describe-abox)
+
+(taxonomy)
+
+(get-tbox-language)
+(get-abox-language)
+
+
+; large answer
+(related-individuals isCompatibleCarItem)
+(related-individuals isCompatibleItemItem)
+(related-individuals isIncluded)
+(individual-fillers Taycan isCompatibleCarItem)
+
+; manually defined
+(concept-disjoint? Wheels Tech) ; --> T
+(individuals-related? ParkingSensors FullSafetySystem isIncluded)
+
+; minilisp
+(evaluate (> (retrieve-individual-told-attribute-value 'HeatedSeats 'hasPrice (current-abox))
+(retrieve-individual-told-attribute-value 'RegularSeats 'hasPrice (current-abox))))
+
+; deduced
+(individuals-related? Taycan BlindSpotMonitor isCompatibleCarItem)
+(individuals-related? Taycan ParkingSensors isCompatibleCarItem)
+(individuals-related? BlindSpotMonitor Wheels19 isCompatibleItemItem)
+
+(retrieve-individual-told-attribute-value 'HeatedSeats 'isOptional (current-abox))
+
+; NRQL
+(get-nrql-version)
+(enable-nrql-warnings)
+(defquery is-interior (?x) (or (?x Seats) (?x Safety) (?x Tech) (?x Trim)))
+(defquery is-included (?x ?y) (?x ?y isIncluded))
+
+; all interior items
+(retrieve (?x) (?x is-interior))
+
+; items included in other items
+(retrieve (?x ?y) (?x ?y is-included))
+
+; interior trim for Taycan
+(defquery trim-options (?car ?trim) (and (?car CarType) (?trim Trim) (?car ?trim isCompatibleCarItem)))
+(retrieve (?trim) (Taycan ?trim trim-options))
+
+; models compatible with an item
+(defquery compat-cars (?car ?item) (and (?car CarType) (?item Item) (?car ?item isCompatibleCarItem)))
+(retrieve (?car) (?car SportSeats compat-cars))
+
+(all-queries)

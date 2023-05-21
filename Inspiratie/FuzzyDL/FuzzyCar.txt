@@ -1,0 +1,15 @@
+(define-modifier very linear-modifier(0.8))
+
+(define-fuzzy-concept Part1PriceRange crisp(0,10000,80,1500))
+(define-fuzzy-concept Part2PriceRange crisp(0,10000,6000,10000))
+
+(define-fuzzy-concept Expensive right-shoulder(0,10000,4000,10000))
+
+(define-concept ExpensivePart (and Part (some Price (very Expensive)))) 
+
+
+(instance P1 (and Part (some Price Part1PriceRange)) 1)
+(instance P2 (and Part (some Price Part2PriceRange)) 1)
+
+(min-instance? P1 ExpensivePart)
+(min-instance? P2 ExpensivePart)

@@ -1,0 +1,199 @@
+(full-reset)
+(in-knowledge-base eif myeif)
+(set-unique-name-assumption t)
+
+(define-primitive-role causes :inverse isCausedBy)
+(define-primitive-role explains :domain Statement :range Statement :transitive t)
+
+(implies-role negatevelyCauses causes)
+
+(related a1 action1 should2)
+(related action1 event1 blocks)
+
+
+(implies-role hasPositiveEffectOn hasEffect)
+(implies-role hasNegativeEffectOn hasEffect)
+
+(implies Obesity (some hasPositiveEffectOn RiskOfDiabetes))
+
+(equivalent reason (and (all hasPremise Statement) 
+                        (exactly 1 hasConclusion Statement)))
+
+(implies explanation (and reason (all hasContext Context)))
+(implies argument reason)
+
+;(implies explanation (and reason 
+;			  (exactly 1 hasConveyor agent)
+;			 (exactly 1 hasHearer agent)
+ ;                        (all hasContext Context)
+;			(exactly 1 hasConclusion Statement)))			
+
+(define-primitive-role hasConveyor :domain Agent :range Agent)
+(define-primitive-role hasHearer :domain Agent :range Agent)
+(define-primitive-role hasConclusion)
+(define-primitive-role hasAccepted :domain Agent :range Statement)
+(define-primitive-role hasContext :domain Reason :range Context)
+
+(equivalent Agent (or HumanAgent SoftwareAgent)) 
+
+(define-rule (?e Explanation) (and 
+     (?e ?a1 hasConveyor)
+     (?e ?a2 hasHearer)
+     (?e ?conc hasConclusion)
+     (?a1 ?conc hasAccepted)
+     (?a2 ?conc hasAccepted)))
+
+
+(define-rule (?premise ?conclusion explains)
+  (and (?e Explanation)
+       (?e ?conclusion hasConclusion)
+     (?e ?premise hasPremise)))
+
+;(define-rule (?s1 ?s2 explains)
+;    (and (?s1 ?s2 causes)
+;         (neg ?s1)))
+
+(implies IntentionalEx Explanation)
+(implies MaterialEx Explanation)
+(implies SocialEx Explanation)
+
+(implies PsychodynamicEx IntentionalEx)
+(implies  RationalEx IntentionalEx)
+
+(implies PersonalTraitsEx PsychodynamicEx)
+(implies EmotionalStatesEx PsychodynamicEx)
+(implies SubconciousForcesEx PsychodynamicEx)
+(implies CognitiveBiasesEx PsychodynamicEx)
+
+(implies  DesirabilityOfEffectsEx RationalEx)
+(implies  PredictionOfEffectsEx RationalEx)
+
+(implies  AgentAnticipatesWeakerBadEffects PredictionOfEffectsEx)
+(implies  AgentAnticipatesStrongerGoodfEffects PredictionOfEffectsEx)
+
+(implies  AgentWrong AgentAnticipatesWeakerBadEffects)
+(implies  ExplainerWrong AgentAnticipatesWeakerBadEffects)
+
+(implies  AgentWrong AgentAnticipatesStrongerGoodEffects)
+(implies  ExplainerWrong AgentAnticipatesStrongerGoodEffects)
+
+
+(implies BuildingCausalModelsFromBasicPrinciplesEx MaterialEx)
+(implies ReasonsExpectationsFaildedEx MaterialEx)
+
+(implies BiologicalLawsEx BuildingCausalModelsFromBasicPrinciplesEx)
+(implies PhysicalLawsEx BuildingCausalModelsFromBasicPrinciplesEx)
+
+(implies DeviceFailureEx ReasonsExpectationsFaildedEx)
+(implies LackOfPrecautionsEx ReasonsExpectationsFaildedEx)
+(implies ExecutionFailureEx ReasonsExpectationsFaildedEx)
+(implies DeadlinePassedEx ReasonsExpectationsFaildedEx)
+(implies LackofResourcesEx ReasonsExpectationsFaildedEx)
+
+(implies CulturalFactorsEx SocialEx)
+(implies SocialCausationEx SocialEx)
+
+
+(racer-read-file "cognitiveBiases.racer")
+
+
+
+(implies Shyness PersonalTraitsEx)
+(implies Addiction PersonalTraitsEx)
+(implies AddictionToSweets Addiction) 
+(implies AddictionToCigarettes Addiction) 
+(implies Exhibitionist PersonalTraitsEx)
+
+(implies Angerness EmotionalStatesEx)
+(implies Nervousness EmotionalStatesEx)
+(implies BeingInLove EmotionalStatesEx)
+
+(implies Repression SubconsciouusForcesEx)
+(implies Sublimation SubconsciouusForcesEx)
+
+(instance e2 Shyness)
+(instance e2c Statement)
+(instance e2p Statement)
+(related e2 e2c hasConclusion)
+(related e2 e2p hasPremise)
+(attribute-filler e2c "Joe didn't call Mary for a date even though he was lonely and suspected that she cared for him." hasText)
+(attribute-filler e2p "He is an extremely shy person." hasText)
+
+
+(instance e3 Exhibitionist)
+(instance e3c Statement)
+(instance e3p Statement)
+(related e3 e3c hasConclusion)
+(related e3 e3p hasPremise)
+(attribute-filler e3c "John smoke cigarettes even though it annoys his friends andis giving him a chronic cough" hasText)
+(attribute-filler e3p "He is addicted to them." hasText)
+
+
+(instance e4 AddictionToCigarettes)
+(instance e4c Statement)
+(instance e4p Statement)
+(related e4 e4c hasConclusion)
+(related e4 e4p hasPremise)
+(attribute-filler e4c "Mary always takes her clother off in public" hasText)
+(attribute-filler e4p "She is an exhibitionist." hasText)
+
+
+(instance e5 Angerness)
+(instance e5c Statement)
+(instance e5p Statement)
+(related e5 e5c hasConclusion)
+(related e5 e5p hasPremise)
+(attribute-filler e5c "Mary hit her son even though she does not believe in corporalpunishment." hasText)
+(attribute-filler e5p "She could not control her anger." hasText)
+
+
+(instance e6 BeingInLove)
+(instance e6c Statement)
+(instance e6p Statement)
+(related e6 e6c hasConclusion)
+(related e6 e6p hasPremise)
+(attribute-filler e6c "John continues to call Mary even though she treats him badly." hasText)
+(attribute-filler e6p "He is in love with her." hasText)
+
+(instance e7 Nervousness)
+(instance e7c Statement)
+(instance e7p Statement)
+(related e7 e7c hasConclusion)
+(related e7 e7p hasPremise)
+(attribute-filler e7c "Dwight pitched so badly in the World Series even if he was sogood the rest of the year." hasText)
+(attribute-filler e7p "He was very nervous." hasText)
+
+
+(instance p1 Statement)
+(instance con1 Statement)
+(related e1 p1 hasPremise)
+(related e1 con1 hasConclusion)
+
+(related e1 c1 hasContext)
+(related e1 a1 hasConveyor)
+(related e1 a2 hasHearer)
+(related a1 con1 hasAccepted)
+(related a2 con1 hasAccepted)
+
+
+(run-all-rules)
+(concept-instances Reason)
+(concept-instances Explanation)
+(individual-types e1)
+(individual-types e2)
+(individual-types e3)
+(individual-types e4)
+(individual-types e5)
+(individual-types e6)
+(individual-types e7)
+
+;(individual-instance? i A)
+
+;(get-individual-pmodel '(and b c) 'RACER::TEST)
+
+;(all-individuals)
+;(realize-abox)
+(compute-all-implicit-role-fillers)
+(all-role-assertions)
+
+

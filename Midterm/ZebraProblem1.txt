@@ -1,0 +1,87 @@
+; PROBLEM 1 https://www.brainzilla.com/logic/zebra/einsteins-riddle/
+; 5 people, 5 houses
+; other attributes: color, nationality, favorite drink, favorite cigarettes, pet
+
+(full-reset)
+
+;TBOX
+;all terms disjoint from one another
+(disjoint house nationality color pet drink cigarette)
+
+;Each house has a color, and is populated by a different man
+;Each man has a favorite drink, cigarette and a pet
+(define-primitive-role has-house :domain house :range person)
+(define-primitive-role has-color :domain house :range color)
+(define-primitive-role has-pet :domain nationality :range pet)
+(define-primitive-role has-drink :domain nationality :range drink)
+(define-primitive-role has-cigarette :domain nationality :range cigarette)
+
+;defining roles to determine neighbouring houses 
+(define-primitive-role is-left :domain house :range house :parents (is-next) :inverse is-right :irreflexive t)
+(define-primitive-role is-next :domain house :range house :inverse is-next :irreflexive t)
+
+; ensuring that we have at most 1 relationship per instance
+(implies top (at-most 1 is-left))
+(implies top (at-most 1 (inv has-color)))
+(implies top (at-most 1 (inv has-house)))
+(implies top (at-most 1 (inv has-cigarette)))
+(implies top (at-most 1 (inv has-drink)))
+(implies top (at-most 1 (inv has-pet)))
+
+;ABOX
+
+(instance red color)
+(instance blue color)
+(instance green color)
+(instance white color)
+(instance yellow color)
+
+(instance brit nationality)
+(instance swede nationality)
+(instance dane nationality)
+(instance german nationality)
+(instance norwegian nationality)
+
+(instance tea drink)
+(instance beer drink)
+(instance coffee drink)
+(instance milk drink)
+(instance water drink)
+
+(instance Blends cigarette)
+(instance BlueMaster cigarette)
+(instance Dunhill cigarette)
+(instance PallMall cigarette)
+(instance Prince cigarette)
+
+(instance birds pet)
+(instance cats pet)
+(instance dogs pet)
+(instance horses pet)
+(instance fish pet)
+
+(instance house1 house)
+(instance house2 house)
+(instance house3 house)
+(instance house4 house)
+(instance house5 house)
+
+(related house1 house2 is-left)
+(related house2 house3 is-left)
+(related house3 house4 is-left)
+(related house4 house5 is-left)
+
+
+;RULES
+
+;The Brit lives in the Red house. 
+(define-rule (?x red has-color) (and (?x house) (?x brit has-house)))
+
+;The Swede keeps Dogs as pets.
+(related swede dogs)
+
+;The Dane drinks Tea.
+(related dane tea)
+
+;The Green house is exactly to the left of the White house.
+(define-rule

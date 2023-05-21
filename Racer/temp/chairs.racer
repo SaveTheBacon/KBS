@@ -1,0 +1,27 @@
+;There are three chairs on a stage. 
+;On the left chair sits Heloise. 
+;On the right chair sits Abelard. 
+;Assuming that any person sits on the middle chair, does a man sit next to a woman on the stage? (from https://www2.informatik.hu-berlin.de/;~wandelt/SW201213/8Racer.pdf)
+
+(full-reset)
+(equivalent Person (or Man Woman))
+(disjoint Man Woman) 
+(symmetric nextto)
+(instance heloise Woman)
+(instance abelard Man)
+(instance p Person)
+(related heloise p nextto)
+		(related p abelard nextto)
+		(instance s Stage)
+		(related heloise s onstage)
+		(related p s onstage)
+		(related abelard s onstage)
+
+		;It works, because all models agree - to be checked in MACE4
+		(concept-instances (and Stage (some (inv onstage) (and Man (some nextto Woman)))))
+
+		;We cannot retrieve “the” man sitting next to a woman.
+		(concept-instances (and Man (some nextto Woman)))
+
+
+		(concept-instances (and Person (some nextto Woman)))

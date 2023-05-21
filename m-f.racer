@@ -1,0 +1,42 @@
+(full-reset)
+
+(DEFINE-PRIMITIVE-ROLE |#hasContent|) 
+(DEFINE-PRIMITIVE-ROLE |#hasQuality|) 
+(DEFINE-PRIMITIVE-ROLE |hasModality|) 
+(DEFINE-PRIMITIVE-ROLE |hasQuantifier|) 
+(DEFINE-PRIMITIVE-ROLE |#begins|) 
+(DEFINE-PRIMITIVE-ROLE |Theme|) 
+(DEFINE-PRIMITIVE-ROLE |possibleType|) 
+(DEFINE-PRIMITIVE-ROLE |#hasInterpretant|) 
+(DEFINE-PRIMITIVE-ROLE |\Recipient|) 
+(DEFINE-PRIMITIVE-ROLE |#boxerpos|) 
+(DEFINE-PRIMITIVE-ROLE |#equivalentClass|) 
+(DEFINE-PRIMITIVE-ROLE |#denotes|) 
+
+(IMPLIES |#Treat| |#Event|) 
+(DEFINE-CONCEPT |#Treat) 
+
+Avem antibiotic si antiviral ca concepte
+can be treated with ca si relatie
+
+
+(IMPLIES |#Antibiotic| TOP) 
+(IMPLIES |#Event| TOP) 
+(IMPLIES |#Antiviral| TOP) 
+
+(INSTANCE |#Only| TOP) 
+(INSTANCE |#IN| TOP) 
+(INSTANCE |#Antibiotic| TOP) 
+(INSTANCE |#Treat| TOP) 
+(INSTANCE |#Antiviral| TOP) 
+(INSTANCE |Influenza| TOP) 
+(INSTANCE |#Thing| TOP) 
+(INSTANCE |#NNP| TOP) 
+
+
+(RELATED |#antibiotic_1| |quantifiers.owl#multiple| |quantifiers.owl#hasQuantifier|) 
+(RELATED |#antiviral_1| |quantifiers.owl#multiple| |quantifiers.owl#hasQuantifier|) 
+(RELATED |#treat_1| |#Only| |/dul/DUL.owl#hasQuality|) 
+(RELATED |#treat_1| |#Influenza| |/vn/abox/role/Recipient|) 
+(RELATED |#treat_1| |#antibiotic_1| |/vn/abox/role/Theme|) 
+(RELATED |#treat_1| |#antiviral_1| |/vn/abox/role/Theme|) 

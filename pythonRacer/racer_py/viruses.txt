@@ -1,0 +1,127 @@
+Adeno-associated virus
+Aichi virus
+Australian bat lyssavirus
+Banna virus
+Barmah forest virus
+BK polyomavirus
+Bunyamwera virus
+Bunyavirus La Crosse
+Bunyavirus snowshoe hare
+Cercopithecine herpesvirus
+Chandipura virus
+Chikungunya virus
+Cosavirus A
+Cowpox virus
+Coxsackievirus
+Crimean-Congo hemorrhagic fever virus
+Dengue virus
+Dhori virus
+Dugbe virus
+Duvenhage virus
+Eastern chimpanzee simian foamy virus
+Eastern equine encephalitis virus
+Ebolavirus
+Echovirus
+Encephalomyocarditis virus
+Epstein-Barr virus
+European bat lyssavirus
+GB virus C/Hepatitis G virus
+Hantaan virus
+Hendra virus
+Hepatitis A virus
+Hepatitis B virus
+Hepatitis C virus
+Hepatitis delta virus
+Hepatitis E virus
+Horsepox virus
+Human adenovirus
+Human astrovirus
+Human coronavirus
+Human cytomegalovirus
+Human enterovirus 68, 70
+Human herpesvirus 1
+Human herpesvirus 2
+Human herpesvirus 6
+Human herpesvirus 7
+Human herpesvirus 8
+Human immunodeficiency virus
+Human papillomavirus 1
+Human papillomavirus 16,18
+Human papillomavirus 2
+Human parainfluenza
+Human parvovirus B19
+Human respiratory syncytial virus
+Human rhinovirus
+Human SARS coronavirus
+Human T-lymphotropic virus
+Human torovirus
+Influenza A virus
+Influenza B virus
+Influenza C virus
+Isfahan virus
+Japanese encephalitis virus
+JC polyomavirus
+Junin arenavirus
+KI Polyomavirus
+Lagos bat virus
+Lake Victoria marburgvirus
+Langat virus
+Lassa virus
+Louping ill virus
+Lymphocytic choriomeningitis virus
+Machupo virus
+Mammalian orthorubulavirus 5 (Simian virus 5)
+Mayaro virus
+Measles virus
+Merkel cell polyomavirus
+MERS coronavirus
+Mokola virus
+Molluscum contagiosum virus
+Monkeypox virus
+Mumps virus
+Murray valley encephalitis virus
+New York virus
+Nipah virus
+Norwalk virus
+O'nyong-nyong virus
+Orf virus
+Oropouche virus
+Pichinde virus
+Poliovirus
+Punta toro phlebovirus
+Puumala virus
+Rabies virus
+Rift valley fever virus
+Rosavirus A
+Ross river virus
+Rotavirus A
+Rotavirus B
+Rotavirus C
+Rubella virus
+Sagiyama virus
+Salivirus A
+Sandfly fever Naples phlebovirus (Toscana virus)
+Sandfly fever sicilian virus
+Sapporo virus
+SARS coronavirus 2
+Semliki forest virus
+Seoul virus
+Simian foamy virus
+Sindbis virus
+Southampton virus
+St. louis encephalitis virus
+Tick-borne powassan virus
+Torque teno virus
+Uukuniemi virus
+Vaccinia virus
+Varicella-zoster virus
+Variola virus
+Venezuelan equine encephalitis virus
+Vesicular stomatitis virus
+West Nile virus
+Western equine encephalitis virus
+WU polyomavirus
+Yaba monkey tumor virus
+Yaba-like disease virus
+Yellow fever virus
+Zika virus

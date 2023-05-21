@@ -1,0 +1,8 @@
+(full-reset)
+(equivalent parent (some hasChild Human))
+(equivalent Grandparent (and (some hasChild (some hasChild Human)) 
+			 Human
+			(some love Child)))
+(concept-subsumes? Parent Grandparent)
+(concept-subsumes? Human Grandparent)
+
