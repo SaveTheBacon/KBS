@@ -27,3 +27,15 @@ can be treated with ca si relatie
 (INSTANCE antiviral Antiviral) 
 (INSTANCE Influenza TOP) 
 
+
+(define-rule (?z Antibiotic)
+	(and
+		(?x Only hasQuality)
+		(?y Treat)
+		
+))
+
+(run-all-rules)
+
+(tbox-coherent?)
+(abox-consistent?)
