@@ -8,37 +8,69 @@
    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#">
    <owl:Ontology rdf:about=""/>
-   <owl:ObjectProperty rdf:about="HASVACCINE">
+   <owl:ObjectProperty rdf:about="HASSYMPTOM">
+      <rdfs:domain>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="VIRUS"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:domain>
+      <rdfs:range>
+         <owl:Class rdf:about="SYMPTOM"/>
+      </rdfs:range>
    </owl:ObjectProperty>
-   <owl:ObjectProperty rdf:about="CANSPREADBYDIRECTCONTACT">
+   <owl:ObjectProperty rdf:about="CANLEADTO">
+      <rdfs:domain>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="VIRUS"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:domain>
+      <rdfs:range>
+         <owl:Class rdf:about="VIRUS"/>
+      </rdfs:range>
+   </owl:ObjectProperty>
+   <owl2:IrreflexiveProperty rdf:about="CANLEADTO"/>
+   <owl2:AsymmetricProperty rdf:about="CANLEADTO"/>
+   <owl:ObjectProperty rdf:about="HASSEVERITYBASEDONSYMPTOM">
+      <rdfs:domain>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="VIRUS"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:domain>
+      <rdfs:range>
+         <owl:Class rdf:about="SEVERITY"/>
+      </rdfs:range>
+   </owl:ObjectProperty>
+   <owl:DatatypeProperty rdf:about="HASTEMPERATURE">
       <rdfs:domain>
          <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
                <owl:Class>
                   <owl:unionOf rdf:parseType="Collection">
-                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="CANSPREADBYDIRECTCONTACT"/>
-                        <owl:allValuesFrom>
-                           <owl:Class rdf:about="VIRUS"/>
-                        </owl:allValuesFrom>
-                     </owl:Restriction>
-                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="HASCAUSE"/>
-                        <owl:allValuesFrom>
-                           <owl:Class>
-                              <owl:complementOf>
-                                 <owl:Class rdf:about="VIRUS"/>
-                              </owl:complementOf>
-                           </owl:Class>
-                        </owl:allValuesFrom>
-                     </owl:Restriction>
+                     <owl:Class rdf:about="FEVER"/>
                   </owl:unionOf>
                </owl:Class>
             </owl:intersectionOf>
          </owl:Class>
       </rdfs:domain>
-   </owl:ObjectProperty>
-   <owl:ObjectProperty rdf:about="HASCAUSE">
+      <rdfs:range resource="http://www.w3.org/2001/XMLSchema#float"/>
+   </owl:DatatypeProperty>
+   <owl:ObjectProperty rdf:about="HASSEVERITY">
+      <rdfs:domain>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="SYMPTOM"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:domain>
+      <rdfs:range>
+         <owl:Class rdf:about="SEVERITY"/>
+      </rdfs:range>
    </owl:ObjectProperty>
    <owl:ObjectProperty rdf:about="HASPREVENTION">
       <rdfs:domain>
@@ -50,6 +82,18 @@
       </rdfs:domain>
       <rdfs:range>
          <owl:Class rdf:about="PREVENTION"/>
+      </rdfs:range>
+   </owl:ObjectProperty>
+   <owl:ObjectProperty rdf:about="HASTRANSMISSIONMODE">
+      <rdfs:domain>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="VIRUS"/>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:domain>
+      <rdfs:range>
+         <owl:Class rdf:about="TRANSMISSIONMODE"/>
       </rdfs:range>
    </owl:ObjectProperty>
    <owl:ObjectProperty rdf:about="HASTREATMENT">
@@ -64,18 +108,51 @@
          <owl:Class rdf:about="TREATMENT"/>
       </rdfs:range>
    </owl:ObjectProperty>
-   <owl:ObjectProperty rdf:about="HASSYMPTOM">
-      <rdfs:domain>
-         <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-               <owl:Class rdf:about="VIRUS"/>
-            </owl:intersectionOf>
-         </owl:Class>
-      </rdfs:domain>
-      <rdfs:range>
+   <owl:Class rdf:about="SEVERITY">
+      <owl:disjointWith>
+         <owl:Class rdf:about="TRANSMISSIONMODE"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="SEVERITY">
+      <owl:disjointWith>
+         <owl:Class rdf:about="PREVENTION"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="SEVERITY">
+      <owl:disjointWith>
+         <owl:Class rdf:about="TREATMENT"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="SEVERITY">
+      <owl:disjointWith>
          <owl:Class rdf:about="SYMPTOM"/>
-      </rdfs:range>
-   </owl:ObjectProperty>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="SEVERITY">
+      <owl:disjointWith>
+         <owl:Class rdf:about="VIRUS"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="TRANSMISSIONMODE">
+      <owl:disjointWith>
+         <owl:Class rdf:about="PREVENTION"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="TRANSMISSIONMODE">
+      <owl:disjointWith>
+         <owl:Class rdf:about="TREATMENT"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="TRANSMISSIONMODE">
+      <owl:disjointWith>
+         <owl:Class rdf:about="SYMPTOM"/>
+      </owl:disjointWith>
+   </owl:Class>
+   <owl:Class rdf:about="TRANSMISSIONMODE">
+      <owl:disjointWith>
+         <owl:Class rdf:about="VIRUS"/>
+      </owl:disjointWith>
+   </owl:Class>
    <owl:Class rdf:about="PREVENTION">
       <owl:disjointWith>
          <owl:Class rdf:about="TREATMENT"/>
@@ -106,9 +183,9 @@
          <owl:Class rdf:about="VIRUS"/>
       </owl:disjointWith>
    </owl:Class>
-   <owl:Class rdf:about="VIRUS">
+   <owl:Class rdf:about="TRANSMISSIONMODE">
       <owl:disjointWith>
-         <owl:Class rdf:about="SYMPTOM"/>
+         <owl:Class rdf:about="PREVENTION"/>
       </owl:disjointWith>
    </owl:Class>
    <owl:Class rdf:about="VIRUS">
@@ -116,39 +193,63 @@
          <owl:Class rdf:about="PREVENTION"/>
       </owl:disjointWith>
    </owl:Class>
-   <owl:Class rdf:about="TYPEA">
-      <rdfs:subClassOf>
-         <owl:Class rdf:about="INFLUENZA"/>
-      </rdfs:subClassOf>
+   <owl:Class rdf:about="NONVACCINETREATMENT">
+      <owl:disjointWith>
+         <owl:Class rdf:about="VACCINETREATMENT"/>
+      </owl:disjointWith>
    </owl:Class>
-   <owl:Class rdf:about="TYPEB">
-      <rdfs:subClassOf>
-         <owl:Class rdf:about="INFLUENZA"/>
-      </rdfs:subClassOf>
+   <owl:Class rdf:about="TRANSMISSIONMODE">
+      <owl:disjointWith>
+         <owl:Class rdf:about="TREATMENT"/>
+      </owl:disjointWith>
    </owl:Class>
-   <owl:Class rdf:about="TYPEC">
-      <rdfs:subClassOf>
-         <owl:Class rdf:about="INFLUENZA"/>
-      </rdfs:subClassOf>
+   <owl:Class rdf:about="VIRUS">
+      <owl:disjointWith>
+         <owl:Class rdf:about="SYMPTOM"/>
+      </owl:disjointWith>
    </owl:Class>
-   <owl:Class rdf:about="TYPED">
-      <rdfs:subClassOf>
-         <owl:Class rdf:about="INFLUENZA"/>
-      </rdfs:subClassOf>
+   <owl:Class rdf:about="NONVACCINEPREVENTION">
+      <owl:disjointWith>
+         <owl:Class rdf:about="VACCINEPREVENTION"/>
+      </owl:disjointWith>
    </owl:Class>
-   <owl:Class rdf:about="SYMPTOM">
-      <owl:equivalentClass>
-         <owl:Restriction>
-            <owl:onProperty rdf:resource="HASCAUSE"/>
-            <owl:someValuesFrom>
+   <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
                <owl:Class>
                   <owl:complementOf>
-                     <owl:Class rdf:about="VIRUS"/>
+                     <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                           <owl:Class rdf:about="VACCINETREATMENT"/>
+                           <owl:Class rdf:about="NONVACCINETREATMENT"/>
+                        </owl:unionOf>
+                     </owl:Class>
                   </owl:complementOf>
                </owl:Class>
-            </owl:someValuesFrom>
-         </owl:Restriction>
-      </owl:equivalentClass>
+               <owl:Class rdf:about="TREATMENT"/>
+            </owl:unionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                           <owl:Class rdf:about="VACCINEPREVENTION"/>
+                           <owl:Class rdf:about="NONVACCINEPREVENTION"/>
+                        </owl:unionOf>
+                     </owl:Class>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class rdf:about="PREVENTION"/>
+            </owl:unionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
    </owl:Class>
    <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
       <rdfs:subClassOf>
@@ -157,31 +258,101 @@
                <owl:Class>
                   <owl:complementOf>
                      <owl:Restriction>
-                        <owl:onProperty rdf:resource="HASCAUSE"/>
-                        <owl:someValuesFrom>
-                           <owl:Class rdf:about="VIRUS"/>
-                        </owl:someValuesFrom>
+                        <owl:onProperty rdf:resource="HASTEMPERATURE"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                      </owl:Restriction>
                   </owl:complementOf>
                </owl:Class>
-               <owl:Restriction>
-                  <owl:onProperty rdf:resource="CANSPREADBYDIRECTCONTACT"/>
-                  <owl:allValuesFrom>
-                     <owl:Class rdf:about="VIRUS"/>
-                  </owl:allValuesFrom>
-               </owl:Restriction>
+               <owl:Class rdf:about="FEVER"/>
             </owl:unionOf>
          </owl:Class>
       </rdfs:subClassOf>
    </owl:Class>
-   <owl:Class rdf:about="PREVENTION">
+   <owl:Class rdf:about="NONVACCINETREATMENT">
       <rdfs:subClassOf>
-         <owl:Restriction>
-            <owl:onProperty rdf:resource="HASVACCINE"/>
-            <owl:someValuesFrom>
-               <owl:Class rdf:about="VIRUS"/>
-            </owl:someValuesFrom>
-         </owl:Restriction>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="VACCINETREATMENT"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="NONVACCINEPREVENTION">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="VACCINEPREVENTION"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="SEVERITY">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="TRANSMISSIONMODE"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="PREVENTION"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="TREATMENT"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="SYMPTOM"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="VIRUS"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="TRANSMISSIONMODE">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="PREVENTION"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="TREATMENT"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="SYMPTOM"/>
+                  </owl:complementOf>
+               </owl:Class>
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="VIRUS"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
       </rdfs:subClassOf>
    </owl:Class>
    <owl:Class rdf:about="PREVENTION">
@@ -238,13 +409,13 @@
          </owl:Class>
       </rdfs:subClassOf>
    </owl:Class>
-   <owl:Class rdf:about="VIRUS">
+   <owl:Class rdf:about="TRANSMISSIONMODE">
       <rdfs:subClassOf>
          <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
                <owl:Class>
                   <owl:complementOf>
-                     <owl:Class rdf:about="SYMPTOM"/>
+                     <owl:Class rdf:about="PREVENTION"/>
                   </owl:complementOf>
                </owl:Class>
             </owl:intersectionOf>
@@ -264,31 +435,275 @@
          </owl:Class>
       </rdfs:subClassOf>
    </owl:Class>
-   <VIRUS rdf:about="CHICKENPOX">
-      <HASPREVENTION rdf:resource="VACCINE"/>
-      <HASSYMPTOM rdf:resource="RASH"/>
+   <owl:Class rdf:about="NONVACCINETREATMENT">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="VACCINETREATMENT"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="TRANSMISSIONMODE">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="TREATMENT"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="VIRUS">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="SYMPTOM"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Class rdf:about="NONVACCINEPREVENTION">
+      <rdfs:subClassOf>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class>
+                  <owl:complementOf>
+                     <owl:Class rdf:about="VACCINEPREVENTION"/>
+                  </owl:complementOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdfs:subClassOf>
+   </owl:Class>
+   <owl:Thing rdf:about="MODERATEFEVER">
+      <rdf:type>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="FEVER"/>
+               <owl:Class>
+                  <owl:intersectionOf rdf:parseType="Collection">
+                     <owl:Restriction>
+                        <owl:onProperty rdf:resource="HASTEMPERATURE"/>
+                        <owl:someValuesFrom>
+                           <xsd:simpleType>
+                              <xsd:restriction xsd:base="http://www.w3.org/2001/XMLSchema#float">
+                                 <xsd:minInclusive xsd:value="37.5"/>
+                              </xsd:restriction>
+                           </xsd:simpleType>
+                        </owl:someValuesFrom>
+                     </owl:Restriction>
+                     <owl:Restriction>
+                        <owl:onProperty rdf:resource="HASTEMPERATURE"/>
+                        <owl:someValuesFrom>
+                           <xsd:simpleType>
+                              <xsd:restriction xsd:base="http://www.w3.org/2001/XMLSchema#float">
+                                 <xsd:maxExclusive xsd:value="39"/>
+                              </xsd:restriction>
+                           </xsd:simpleType>
+                        </owl:someValuesFrom>
+                     </owl:Restriction>
+                  </owl:intersectionOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdf:type>
+      <HASSEVERITY rdf:resource="MODERATE"/>
+   </owl:Thing>
+   <SEVERITY rdf:about="MODERATE">
+   </SEVERITY>
+   <owl:Thing rdf:about="HIGHFEVER">
+      <rdf:type>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="FEVER"/>
+               <owl:Class>
+                  <owl:intersectionOf rdf:parseType="Collection">
+                     <owl:Restriction>
+                        <owl:onProperty rdf:resource="HASTEMPERATURE"/>
+                        <owl:someValuesFrom>
+                           <xsd:simpleType>
+                              <xsd:restriction xsd:base="http://www.w3.org/2001/XMLSchema#float">
+                                 <xsd:minInclusive xsd:value="39"/>
+                              </xsd:restriction>
+                           </xsd:simpleType>
+                        </owl:someValuesFrom>
+                     </owl:Restriction>
+                     <owl:Restriction>
+                        <owl:onProperty rdf:resource="HASTEMPERATURE"/>
+                        <owl:someValuesFrom>
+                           <xsd:simpleType>
+                              <xsd:restriction xsd:base="http://www.w3.org/2001/XMLSchema#float">
+                                 <xsd:maxExclusive xsd:value="41"/>
+                              </xsd:restriction>
+                           </xsd:simpleType>
+                        </owl:someValuesFrom>
+                     </owl:Restriction>
+                  </owl:intersectionOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdf:type>
+      <HASSEVERITY rdf:resource="SEVERE"/>
+   </owl:Thing>
+   <SEVERITY rdf:about="SEVERE">
+   </SEVERITY>
+   <VIRUS rdf:about="PNEUMONIA">
+      <HASTREATMENT rdf:resource="CORTICOSTEROIDMEDICINE"/>
+      <HASTREATMENT rdf:resource="ANTIBIOTICINJECTION"/>
+      <HASPREVENTION rdf:resource="SOCIALDISTANCING"/>
+      <HASPREVENTION rdf:resource="FACEMASK"/>
+      <HASPREVENTION rdf:resource="HANDHYGIENE"/>
+      <HASSYMPTOM rdf:resource="FATIGUE"/>
+      <HASSYMPTOM rdf:resource="SHORTNESSOFBREATH"/>
+      <HASSYMPTOM rdf:resource="FEVER"/>
+      <HASSYMPTOM rdf:resource="COUGH"/>
+      <HASSYMPTOM rdf:resource="MODERATEFEVER"/>
    </VIRUS>
-   <PREVENTION rdf:about="VACCINE">
-   </PREVENTION>
+   <NONVACCINETREATMENT rdf:about="CORTICOSTEROIDMEDICINE">
+   </NONVACCINETREATMENT>
+   <VACCINETREATMENT rdf:about="ANTIBIOTICINJECTION">
+   </VACCINETREATMENT>
+   <NONVACCINEPREVENTION rdf:about="SOCIALDISTANCING">
+   </NONVACCINEPREVENTION>
+   <NONVACCINEPREVENTION rdf:about="FACEMASK">
+   </NONVACCINEPREVENTION>
+   <NONVACCINEPREVENTION rdf:about="HANDHYGIENE">
+   </NONVACCINEPREVENTION>
+   <SYMPTOM rdf:about="FATIGUE">
+   </SYMPTOM>
+   <SYMPTOM rdf:about="SHORTNESSOFBREATH">
+   </SYMPTOM>
+   <SYMPTOM rdf:about="FEVER">
+   </SYMPTOM>
+   <SYMPTOM rdf:about="COUGH">
+   </SYMPTOM>
+   <VIRUS rdf:about="CHICKENPOX">
+      <HASTREATMENT rdf:resource="ANTIBIOTICMEDICINE"/>
+      <HASTREATMENT rdf:resource="ANTIVIRALMEDICINE"/>
+      <HASPREVENTION rdf:resource="MEASLESVACCINE"/>
+      <HASPREVENTION rdf:resource="SOCIALDISTANCING"/>
+      <HASPREVENTION rdf:resource="FACEMASK"/>
+      <HASPREVENTION rdf:resource="HANDHYGIENE"/>
+      <HASSYMPTOM rdf:resource="RASH"/>
+      <HASSYMPTOM rdf:resource="MODERATEFEVER"/>
+   </VIRUS>
+   <NONVACCINETREATMENT rdf:about="ANTIBIOTICMEDICINE">
+   </NONVACCINETREATMENT>
+   <NONVACCINETREATMENT rdf:about="ANTIVIRALMEDICINE">
+   </NONVACCINETREATMENT>
+   <VACCINEPREVENTION rdf:about="MEASLESVACCINE">
+   </VACCINEPREVENTION>
    <SYMPTOM rdf:about="RASH">
    </SYMPTOM>
    <VIRUS rdf:about="MEASLES">
-      <HASPREVENTION rdf:resource="VACCINE"/>
+      <HASTREATMENT rdf:resource="IVFLUIDINJECTION"/>
+      <HASTREATMENT rdf:resource="ANTIBIOTICINJECTION"/>
+      <HASPREVENTION rdf:resource="MEASLESVACCINE"/>
+      <HASPREVENTION rdf:resource="SOCIALDISTANCING"/>
+      <HASPREVENTION rdf:resource="FACEMASK"/>
+      <HASPREVENTION rdf:resource="HANDHYGIENE"/>
       <HASSYMPTOM rdf:resource="RASH"/>
-      <HASSYMPTOM rdf:resource="FEVER"/>
+      <HASSYMPTOM rdf:resource="HIGHFEVER"/>
    </VIRUS>
-   <SYMPTOM rdf:about="FEVER">
+   <VACCINETREATMENT rdf:about="IVFLUIDINJECTION">
+   </VACCINETREATMENT>
+   <owl:Thing rdf:about="COVID-19">
+      <HASTREATMENT rdf:resource="CORTICOSTEROIDMEDICINE"/>
+      <HASTREATMENT rdf:resource="ANTIVIRALMEDICINE"/>
+      <HASPREVENTION rdf:resource="COVIDVACCINE"/>
+      <HASPREVENTION rdf:resource="SOCIALDISTANCING"/>
+      <HASPREVENTION rdf:resource="FACEMASK"/>
+      <HASPREVENTION rdf:resource="HANDHYGIENE"/>
+      <HASSYMPTOM rdf:resource="HEADACHE"/>
+      <HASSYMPTOM rdf:resource="SHORTNESSOFBREATH"/>
+      <HASSYMPTOM rdf:resource="COUGH"/>
+      <HASSYMPTOM rdf:resource="HIGHFEVER"/>
+   </owl:Thing>
+   <VACCINEPREVENTION rdf:about="COVIDVACCINE">
+   </VACCINEPREVENTION>
+   <SYMPTOM rdf:about="HEADACHE">
    </SYMPTOM>
    <VIRUS rdf:about="INFLUENZA">
-      <HASPREVENTION rdf:resource="VACCINE"/>
-      <HASTREATMENT rdf:resource="ANTIVIRAL"/>
+      <HASTREATMENT rdf:resource="ANTIBIOTICMEDICINE"/>
+      <HASTREATMENT rdf:resource="ANTIVIRALMEDICINE"/>
+      <HASPREVENTION rdf:resource="FLUVACCINE"/>
+      <HASPREVENTION rdf:resource="SOCIALDISTANCING"/>
+      <HASPREVENTION rdf:resource="FACEMASK"/>
+      <HASPREVENTION rdf:resource="HANDHYGIENE"/>
+      <HASSYMPTOM rdf:resource="FATIGUE"/>
+      <HASSYMPTOM rdf:resource="SORETHROAT"/>
       <HASSYMPTOM rdf:resource="COUGH"/>
-      <HASSYMPTOM rdf:resource="FEVER"/>
+      <HASSYMPTOM rdf:resource="MODERATEFEVER"/>
    </VIRUS>
-   <TREATMENT rdf:about="ANTIVIRAL">
-   </TREATMENT>
-   <SYMPTOM rdf:about="COUGH">
+   <VACCINEPREVENTION rdf:about="FLUVACCINE">
+   </VACCINEPREVENTION>
+   <SYMPTOM rdf:about="SORETHROAT">
    </SYMPTOM>
-   <TREATMENT rdf:about="ANTIBIOTIC">
-   </TREATMENT>
+   <SEVERITY rdf:about="MILD">
+   </SEVERITY>
+   <SEVERITY rdf:about="NOSEVEREITY">
+   </SEVERITY>
+   <TRANSMISSIONMODE rdf:about="VECTORTRANSMISSION">
+   </TRANSMISSIONMODE>
+   <TRANSMISSIONMODE rdf:about="CONTACTTRANSMISSION">
+   </TRANSMISSIONMODE>
+   <TRANSMISSIONMODE rdf:about="DROPLETTRANSMISSION">
+   </TRANSMISSIONMODE>
+   <TRANSMISSIONMODE rdf:about="AIRBORNETRANSMISSION">
+   </TRANSMISSIONMODE>
+   <VACCINETREATMENT rdf:about="PAINRELIEFINJECTION">
+   </VACCINETREATMENT>
+   <VACCINETREATMENT rdf:about="VACCINATIONINJECTION">
+   </VACCINETREATMENT>
+   <NONVACCINETREATMENT rdf:about="ANTI-INFLAMMATORYMEDICINE">
+   </NONVACCINETREATMENT>
+   <NONVACCINETREATMENT rdf:about="PAINRELIEFMEDICINE">
+   </NONVACCINETREATMENT>
+   <owl:Thing rdf:about="NORMALTEMPERATURE">
+      <rdf:type>
+         <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+               <owl:Class rdf:about="FEVER"/>
+               <owl:Class>
+                  <owl:intersectionOf rdf:parseType="Collection">
+                     <owl:Restriction>
+                        <owl:onProperty rdf:resource="HASTEMPERATURE"/>
+                        <owl:someValuesFrom>
+                           <xsd:simpleType>
+                              <xsd:restriction xsd:base="http://www.w3.org/2001/XMLSchema#float">
+                                 <xsd:minInclusive xsd:value="36"/>
+                              </xsd:restriction>
+                           </xsd:simpleType>
+                        </owl:someValuesFrom>
+                     </owl:Restriction>
+                     <owl:Restriction>
+                        <owl:onProperty rdf:resource="HASTEMPERATURE"/>
+                        <owl:someValuesFrom>
+                           <xsd:simpleType>
+                              <xsd:restriction xsd:base="http://www.w3.org/2001/XMLSchema#float">
+                                 <xsd:maxExclusive xsd:value="37.5"/>
+                              </xsd:restriction>
+                           </xsd:simpleType>
+                        </owl:someValuesFrom>
+                     </owl:Restriction>
+                  </owl:intersectionOf>
+               </owl:Class>
+            </owl:intersectionOf>
+         </owl:Class>
+      </rdf:type>
+   </owl:Thing>
+   <VIRUS rdf:about="COVID19">
+   </VIRUS>
 </rdf:RDF>

@@ -1,60 +1,164 @@
 (full-reset)
 
-; Define concepts and instances
 
-(instance Influenza Virus)
-(instance Measles Virus)
-(instance Chickenpox Virus)
+;---CONCEPTS---
 
-(implies TypeA Influenza)
-(implies TypeB Influenza)
-(implies TypeC Influenza)
-(implies TypeD Influenza)
+;there are 2 types of treatment
+(implies (or VaccineTreatment NonVaccineTreatment) Treatment)
+(disjoint VaccineTreatment NonVaccineTreatment)
 
-(instance Fever Symptom)
-(instance Cough Symptom)
-(instance Rash Symptom)
+;there are 2 types of prevention
+(implies (or VaccinePrevention NonVaccinePrevention) Prevention)
+(disjoint VaccinePrevention NonVaccinePrevention)
 
-(instance Antiviral Treatment)
-(instance Antibiotic Treatment)
-
-
-(instance Vaccine Prevention)
+;---ROLES---
 
 (define-primitive-role hasSymptom :domain Virus :range Symptom)
 (define-primitive-role hasTreatment :domain Virus :range Treatment)
 (define-primitive-role hasPrevention :domain Virus :range Prevention)
+(define-primitive-role hasSeverity :domain Symptom :range Severity)
+(define-primitive-role hasSeverityBasedOnSymptom :domain Virus :range Severity)
+(define-primitive-role canLeadTo :domain Virus :range Virus :asymmetric t)
+(define-primitive-role hasTransmissionMode :domain Virus :range TransmissionMode)
+(define-concrete-domain-attribute hasTemperature :domain Fever :type real)
 
-(related Influenza Fever hasSymptom)
+;(equivalent Symptom (some hasCause (not Virus)))
+;(implies (some hasCause Virus) (all canSpreadByDirectContact Virus))
+;(implies Prevention (some hasVaccine Virus))
+
+;---COMPATIBILITIES---
+
+(related Influenza ModerateFever hasSymptom)
 (related Influenza Cough hasSymptom)
-(related Influenza Antiviral hasTreatment)
-(related Influenza Vaccine hasPrevention)
+(related Influenza SoreThroat hasSymptom)
+(related Influenza Fatigue hasSymptom)
+(related Influenza HandHygiene hasPrevention)
+(related Influenza FaceMask hasPrevention)
+(related Influenza SocialDistancing hasPrevention)
+(related Influenza FluVaccine hasPrevention)
+(related Influenza AntiviralMedicine hasTreatment)
+(related Influenza AntibioticMedicine hasTreatment)
 
-(related Measles Fever hasSymptom)
+(related COVID-19 HighFever hasSymptom)
+(related COVID-19 Cough hasSymptom)
+(related COVID-19 ShortnessOfBreath hasSymptom)
+(related COVID-19 Headache hasSymptom)
+(related COVID-19 HandHygiene hasPrevention)
+(related COVID-19 FaceMask hasPrevention)
+(related COVID-19 SocialDistancing hasPrevention)
+(related COVID-19 COVIDVaccine hasPrevention)
+(related COVID-19 AntiviralMedicine hasTreatment)
+(related COVID-19 CorticosteroidMedicine hasTreatment)
+
+(related Measles HighFever hasSymptom)
 (related Measles Rash hasSymptom)
-(related Measles Vaccine hasPrevention)
+(related Measles HandHygiene hasPrevention)
+(related Measles FaceMask hasPrevention)
+(related Measles SocialDistancing hasPrevention)
+(related Measles MeaslesVaccine hasPrevention)
+(related Measles AntibioticInjection hasTreatment)
+(related Measles IVFluidInjection hasTreatment)
 
+(related Chickenpox ModerateFever hasSymptom)
 (related Chickenpox Rash hasSymptom)
-(related Chickenpox Vaccine hasPrevention)
+(related Chickenpox HandHygiene hasPrevention)
+(related Chickenpox FaceMask hasPrevention)
+(related Chickenpox SocialDistancing hasPrevention)
+(related Chickenpox MeaslesVaccine hasPrevention)
+(related Chickenpox AntiviralMedicine hasTreatment)
+(related Chickenpox AntibioticMedicine hasTreatment)
 
-; Define logical relationships between concepts and instances
-;(implies Virus (some hasSymptom Symptom))
-;(implies Virus (some hasTreatment Treatment))
-;(implies Virus (some hasPrevention Prevention))
+(related Pneumonia ModerateFever hasSymptom)
+(related Pneumonia Cough hasSymptom)
+(related Pneumonia Fever hasSymptom)
+(related Pneumonia ShortnessOfBreath hasSymptom)
+(related Pneumonia Fatigue hasSymptom)
+(related Pneumonia HandHygiene hasPrevention)
+(related Pneumonia FaceMask hasPrevention)
+(related Pneumonia SocialDistancing hasPrevention)
+(related Pneumonia AntibioticInjection hasTreatment)
+(related Pneumonia CorticosteroidMedicine hasTreatment)
 
-(equivalent Symptom (some hasCause (not Virus)))
+(related HighFever Severe hasSeverity)
+(related ModerateFever Moderate hasSeverity)
 
-(implies (some hasCause Virus) (all canSpreadByDirectContact Virus))
+;---RULES---
 
-;(implies Virus (and (some hasSymptom top) (some hasTreatment top)))
+;if a virus has a symptom and that symptom has a certain level of severity, then the virus has the same level of severity
+(define-rule (?virus ?symptom hasSymptom) 
+			(and (?virus Virus) (?symptom Symptom) (?severity Severity) (?symptom ?severity hasSeverity) (?virus ?severity hasSeverityBasedOnSymptom))
+)
+;if a virus can lead to another virus and the first virus has a certain prevention, the second virus has the same prevention
+(define-rule (?virus1 ?virus2 canLeadTo)
+			(and (?virus1 Virus) (?virus2 Virus) (?transmisionMode TransmissionMode) (not (same-as ?virus1 ?virus2))
+			(?virus1 ?transmisionMode hasTransmissionMode) (?virus2 ?transmisionMode hasTransmissionMode))
+)
 
-(implies Prevention (some hasVaccine Virus))
+;---DISEASES
+(instance Influenza Virus)
+(instance Measles Virus)
+(instance Chickenpox Virus)
+(instance Pneumonia Virus)
+(instance COVID19 Virus)
 
-(disjoint Virus Symptom Treatment Prevention)
+;---SYMPTOMS---
+(instance Fever Symptom)
+(instance Cough Symptom)
+(instance Rash Symptom)
+(instance SoreThroat Symptom)
+(instance Fatigue Symptom)
+(instance ShortnessOfBreath Symptom)
+(instance Headache Symptom)
+
+(instance HighFever (and Fever (and (>= hasTemperature 39) (< hasTemperature 41))))
+(instance ModerateFever (and Fever (and (>= hasTemperature 37.5) (< hasTemperature 39))))
+(instance NormalTemperature (and Fever (and (>= hasTemperature 36) (< hasTemperature 37.5))))
+
+; --- TREATMENT OPTIONS ---
+(instance AntiviralMedicine NonVaccineTreatment)
+(instance AntibioticMedicine NonVaccineTreatment)
+(instance PainReliefMedicine NonVaccineTreatment)
+(instance CorticosteroidMedicine NonVaccineTreatment)
+(instance Anti-inflammatoryMedicine NonVaccineTreatment)
+
+(instance IVFluidInjection VaccineTreatment)
+(instance VaccinationInjection VaccineTreatment)
+(instance AntibioticInjection VaccineTreatment)
+(instance PainReliefInjection VaccineTreatment)
+
+; --- PREVENTION MEASURES ---
+(instance HandHygiene NonVaccinePrevention)
+(instance FaceMask NonVaccinePrevention)
+(instance SocialDistancing NonVaccinePrevention)
+
+(instance FluVaccine VaccinePrevention)
+(instance COVIDVaccine VaccinePrevention)
+(instance MeaslesVaccine VaccinePrevention)
+
+
+; --- TRANSMISSION MODES ---
+(instance AirborneTransmission TransmissionMode)
+(instance DropletTransmission TransmissionMode)
+(instance ContactTransmission TransmissionMode)
+(instance VectorTransmission TransmissionMode)
+
+;---SEVERITY---
+(instance NoSevereity Severity)
+(instance Mild Severity)
+(instance Moderate Severity)
+(instance Severe Severity)
+
+
+;---CONCEPT-INSTANCES---
+(disjoint Virus Symptom Treatment Prevention TransmissionMode Severity)
 (disjoint Symptom Virus)
 (disjoint Prevention Virus)
+(disjoint Treatment TransmissionMode)
+(disjoint Prevention TransmissionMode)
 (concept-instances Virus)
 (concept-instances Treatment)
 (concept-instances Prevention)
 (concept-instances Symptom)
+(concept-instances TransmissionMode)
+(concept-instances Severity)
 

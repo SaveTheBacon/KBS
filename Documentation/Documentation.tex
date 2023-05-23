@@ -1,0 +1,771 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{listings} 
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{hyperref}
+%\usepackage{zeta}
+%\usepackage[inline]{trackchanges}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+%\usepackage{makeidx}
+\usepackage{tocloft}
+%\usepackage{romanian}
+\usepackage{pdfpages}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\begin{document}
+\newcommand{\h}{\texttt}
+
+\vspace{-5cm}
+\begin{center}
+Deitemment of Computer Science\\
+Technical University of Cluj-Napoca\\
+\pgfimage[width=15cm]{footer.jpg}
+\end{center}
+\vspace{1cm}
+%\maketitle
+\begin{center}
+\begin{Large}
+Knowledge-Based Systems\\
+\end{Large}
+
+\vspace*{1cm}
+Laboratory activity 2023\\
+
+\vspace*{1cm}
+Infectious Disease Ontology \\
+\vspace*{1cm}
+
+Students: Balacescu Vlad, Bogdan Stefan\\
+
+\vspace*{14cm}
+
+Assoc. Prof.dr. eng. Adrian Groza\\
+Adrian.Groza@cs.utcluj.ro
+\end{center}
+
+\newpage 
+\tableofcontents
+
+\chapter{Competency questions and use cases}
+\section{Competency questions}
+
+\begin{itemize}
+  \item Is item X compatible with model Y?
+  \item Is item X compatible only with model Y?
+  \item What models are compatible with item X?
+  \item Is item X$_1$ compatible with item X$_2$?
+  \item Is item X standard or optional?
+  \item Is model Y an electric vehicle?
+  \item What interior trim options are there for model Y?
+  \item Does item X$_1$ include item X$_2$?
+  \item Is item X an interior or exterior item?
+  \item Is model Y available with large wheels?
+  \item Is a glass roof available for model Y?
+\end{itemize}
+
+\section{Use Cases}
+The main use cases are:
+\begin{itemize}
+  \item Finding out which configuration items are compatible with the desired vehicle
+  \item Checking the compatibility of the items between themselves
+  \end{itemize}
+
+\chapter{Concepts}
+The Car Configuration ontology is used for configuring a vehicle with the desired options.
+Therefore, the options have to be divide into categories, and rules established for selecting items from them, so as to fit together.
+Below is the preliminary classification of car configuration items:
+
+\begin{center}
+    \pgfimage[width=10cm]{car_config_ontology.png}
+\end{center}
+
+We have split the vehicles into two categories: electric and with combustion engines. The optional items are then split into Exterior and Interior items, where you would find your usual expected items.
+Using this classification, we will be able to defines rules that specify that you may only choose one item from Wheels, but more then one item from Tech, for example.
+
+Below is an extract from the Taxonomy page of Racer:
+
+\begin{center}
+    \pgfimage[width=15cm]{taxonomy.png}
+\end{center}
+
+\chapter{ABox}
+We will briefly show the structure and knowledge present in the knowledge base
+
+\chapter{Roles}
+The roles we have defined are the following:
+\begin{itemize}
+    \item isCompatibleCarItem
+    \item isCompatibleItemItem
+    \item isIncluded
+    
+\end{itemize}
+
+The role \textit{isCompatibleCarItem} defines which equipment items are compatible with a specified model, while the role \textit{isCompatibleItemItem} defines which items are compatible between each other. For example, two different sets of wheels are incompatible, since only one type of wheel can be selected in a car configuration.
+
+\bigskip
+The role \textit{isIncluded} specifies which items are included in other items, for example, the blind spot monitoring system is included in the full autopilot system.
+
+\bigskip
+Additionally, we have defined two additional attributes for each equipment item: \textit{price} and \textit{optional}, which show the price of an item and whether it is given as standard or it is an option. Standard equipment costs nothing.
+
+\bigskip
+Below is the formal declaration of the roles from above:
+\bigskip
+
+\textit{(define-primitive-role isCompatibleCarItem :domain CarType :range Item)}
+
+\textit{(define-primitive-role isCompatibleItemItem :domain Item :range Item  :symmetric t)}
+
+\textit{(define-primitive-role isIncluded :domain Item :range Item :asymmetric t)}
+
+\chapter{Rules}
+We have defined a rule that propagates the compatibility of a items to a vehicle model, when an item includes another item:
+
+\begin{center}
+    \textit{(define-rule (?car ?item2 isCompatibleCarItem)}
+    
+    \textit{(and (?car CarType) (?item1 Item) (?item2 Item) (not (same-as ?item1 ?item2))}
+    
+    \textit{(?car ?item1 isCompatibleCarItem) (?item2 ?item1 isIncluded))) }
+
+\end{center} 
+
+Meaning that vehicle ?car and item ?item2 are deemed compatible if there is another item ?item1 with which ?car is compatible and which also includes ?item2.
+
+\bigskip
+For example, if a vehicle is compatible with the FullAutopilot item, which includes the BlindSpotMonitor item, it then means that the vehicle is also compatible with the BlindSpotMonitor, however not at the same time.
+
+\bigskip
+In order to infer which items are compatible with other items, we decided to use the Racer Java API, since defining a set of rules that would produce this result in racer syntax proved too difficult.
+
+We defined two items that are compatible as being from different sets. For example, a glass roof is compatible with 19' wheels, since they do not interfere with each other. However, 19; wheels are not compatible with 20' wheels, since a vehicle can only have one type of item from the Wheels category. Code is included in later chapters.  
+
+\bigskip
+It is also possible to count the instances of a set and, for example, say that only one item of some categories can be selected, but more from another category, like Safety for example. However, we removed the need for this extra verification by combining the items in item packs, that are like upgrades, with each pack containing the features of the previous pack, plus additional ones.
+
+\bigskip
+For example, the item HeatedSeats includes the item RegularSeats, which are both in the Seats category, meaning that only one can be selected as a configuration. The same goes for the FullAutopilot item, which includes the BlindSpotMonitor item and are both part of the Safety category. This way we can ensure that only one item from each category is selected.
+
+\bigskip
+Additionally, we have defined an extra rule that is applied between items with inclusions. It implements the transitivity property of the inclusion of items, which could not be defined in the rule definition of the \textit{isIncluded} role, due to the fact that inclusion is assimetrical:
+
+\begin{center}
+
+    \textit{(define-rule (?item1 ?item3 isIncluded)}
+    
+    \textit{(and (?item1 Item) (?item2 Item) (?item3 Item) (not (same-as ?item1 ?item2)) (not (same-as ?item2 ?item3)) (not (same-as ?item1 ?item3))}
+    
+    \textit{(?item1 ?item2 isIncluded) (?item2 ?item3 isIncluded))) }
+    
+\end{center} 
+
+\chapter{FRED}
+We attempted to use FRED in order to turn 2 natural language affirmations (Influenza can be treated with antibiotics, a myth, and Influenza can only be treated with antivirals, the truth) into ontologies.
+
+After creating 2 ontologies, we merged them by using Protege and simplified them by hand, in order to disprove this myth.
+
+\chapter{Racer Python API}
+We have used the \textit{Racer Python API} to populate our ontology.
+
+\section{Obtaining the project files}
+We downloaded the project files from Moodle, and included them in a PyCharm folder.
+
+
+\begin{center}
+    \pgfimage[width=6cm]{PycharmFolders.png}
+\end{center}
+
+\section{Establishing a connection}
+In order to establish a connection to the Racer server, it has to first be running in the background (otherwise an exception will be thrown). 
+
+Once the Racer server starts, we can can connect to it using the following syntax:
+
+\begin{center}
+    \pgfimage[width=17cm]{Connection.png}
+\end{center}
+
+Once the connection has been established, we can directly interact with our technology, with no need for the Racer Porter program.
+
+\section{Populating our ontology}
+We attempted to use our Python program in order to populate our ontology with various instances in order to simplify our work. We did this by aggregating a list of viruses from the internet, taking 15 random samples, and adding them directly to our ontology:
+
+\begin{center}
+    \pgfimage[width=17cm]{Code.png}
+\end{center}
+
+\section{Results}
+As can be seen from the image below, 15 random viruses were added to our ontology:
+
+\begin{center}
+    \pgfimage[width=17cm]{Results.png}
+\end{center}
+
+
+\chapter{Ontology Verbalization}
+\section{Introduction}
+We used an ontology verbalization tool in order to convert our ontology into (something closer to) natural language.
+
+\section{Steps}
+\begin{itemize}
+    \item We converted our ontology from Racer syntax to OWL syntax, using RacerPorter.
+    \item We converted our OWL syntax ontology to a OWL2 syntax one using https://www.ldf.fi/service/owl-converter/
+    \item We converted our ontology to natural language by using http://attempto.ifi.uzh.ch/site/docs/owl\_to\_ace.html
+    
+\end{itemize}
+
+\section{Results}
+
+\begin{lstlisting}
+Every SYMPTOM HASCAUSE something that is not a VIRUS.
+Everything that HASCAUSE something that is not a VIRUS is a SYMPTOM.
+
+Every PREVENTION is something that is not a SYMPTOM and that is not a TREATMENT and that is not a VIRUS.
+
+Every PREVENTION HASVACCINE a VIRUS.
+
+No SYMPTOM is a VIRUS.
+
+Every TREATMENT is something that is not a SYMPTOM and that is not a VIRUS.
+
+Every TYPEA is an INFLUENZA.
+
+Every TYPEB is an INFLUENZA.
+
+Every TYPEC is an INFLUENZA.
+
+Every TYPED is an INFLUENZA.
+
+No VIRUS is a PREVENTION.
+
+No VIRUS is a SYMPTOM.
+
+Everything is something that CANSPREADBYDIRECTCONTACT nothing but VIRUS or that does not HASCAUSE a VIRUS.
+
+No PREVENTION is a SYMPTOM.
+
+No PREVENTION is a TREATMENT.
+
+No PREVENTION is a VIRUS.
+
+No SYMPTOM is a TREATMENT.
+
+No SYMPTOM is a VIRUS.
+
+No TREATMENT is a VIRUS.
+
+ANTIBIOTIC is a TREATMENT.
+
+ANTIVIRAL is a TREATMENT.
+
+CHICKENPOX is a VIRUS.
+
+COUGH is a SYMPTOM.
+
+FEVER is a SYMPTOM.
+
+INFLUENZA is a VIRUS.
+
+MEASLES is a VIRUS.
+
+RASH is a SYMPTOM.
+
+VACCINE is a PREVENTION.
+
+CHICKENPOX HASPREVENTION VACCINE.
+
+CHICKENPOX HASSYMPTOM RASH.
+
+INFLUENZA HASPREVENTION VACCINE.
+
+INFLUENZA HASSYMPTOM COUGH.
+
+INFLUENZA HASSYMPTOM FEVER.
+
+INFLUENZA HASTREATMENT ANTIVIRAL.
+
+MEASLES HASPREVENTION VACCINE.
+
+MEASLES HASSYMPTOM FEVER.
+
+MEASLES HASSYMPTOM RASH.
+
+Everything that CANSPREADBYDIRECTCONTACT something is something that CANSPREADBYDIRECTCONTACT nothing but VIRUS or that does not HASCAUSE a VIRUS.
+
+Everything that HASPREVENTION something is a VIRUS.
+
+Everything that HASSYMPTOM something is a VIRUS.
+
+Everything that HASTREATMENT something is a VIRUS.
+
+Everything that is HASPREVENTION by something is a PREVENTION.
+
+Everything that is HASSYMPTOM by something is a SYMPTOM.
+
+Everything that is HASTREATMENT by something is a TREATMENT.
+
+
+\end{lstlisting}
+
+\chapter{Queries}
+\section{Racer Queries}
+\begin{center}
+    \pgfimage[width=17cm]{racerq.png}
+\end{center}
+\section{NRQL Queries}
+\begin{center}
+    \pgfimage[width=17cm]{nrql.png}
+\end{center}
+\section{Query Results}
+\begin{center}
+    \pgfimage[width=17cm]{racerqres.png}
+\end{center}
+\begin{center}
+    \pgfimage[width=17cm]{nrqlres.png}
+\end{center}
+
+\chapter{Appendix}
+\appendix
+
+
+
+\section{Racer axioms}
+\lstset{style=mystyle}
+\begin{lstlisting}[language=Octave]
+(full-reset)
+
+; --- CONCEPTS ---
+; Electric and Internal Combustion are different
+(implies
+    (or EV ICEV)
+CarType)
+(disjoint EV ICEV)
+
+; These are Exterior options
+(implies 
+    (or Wheels Paint Headlights Roof) 
+ExteriorOption)
+(disjoint Wheels Paint Headlights Roof)
+
+; These are Interior options
+(implies 
+    (or Seats Tech Trim Safety)
+InteriorOption)
+(disjoint Seats Tech Trim Safety)
+
+; all are items
+(implies
+    (or ExteriorOption InteriorOption)
+Item)
+
+; all top categories are different
+(disjoint CarType ExteriorOption InteriorOption)
+
+
+; --- ATTRIBUTES ---
+; Attributes of a car Model
+(define-concrete-domain-attribute name :type string)
+
+; Attributes of each part
+(define-concrete-domain-attribute hasPrice :type integer)
+(define-concrete-domain-attribute isOptional :type integer)
+
+; --- ROLES ---
+(define-primitive-role isCompatibleCarItem :domain CarType :range Item)
+(define-primitive-role isCompatibleItemItem :domain Item :range Item :symmetric t)
+(define-primitive-role isIncluded :domain Item :range Item :asymmetric t)
+
+
+; --- RULES ---
+; Is a car is compatibile with an item that includes another item,
+; the car is also compatible withe the second item
+(define-rule (?car ?item2 isCompatibleCarItem)
+    (and (?car CarType) (?item1 Item) (?item2 Item) (not (same-as ?item1 ?item2))
+    (?car ?item1 isCompatibleCarItem) (?item2 ?item1 isIncluded)) 
+)
+
+; Is an item includes another item, that in turn includes another item,
+; the first and last items are compatible
+(define-rule (?item1 ?item3 isIncluded)
+    (and (?item1 Item) (?item2 Item) (?item3 Item) (not (same-as ?item1 ?item2)) (not (same-as ?item2 ?item3)) (not (same-as ?item1 ?item3))
+    (?item1 ?item2 isIncluded) (?item2 ?item3 isIncluded))
+)
+
+; --- MODELS ---
+(instance Taycan EV)
+(instance Macan ICEV)
+
+; --- WHEELS ---
+(instance Wheels19 Wheels)
+(instance Wheels20 Wheels)
+(instance Wheels21 Wheels)
+
+; --- PAINT ---
+(instance MetallicPaint Paint)
+(instance PearlescentPaint Paint)
+
+; --- HEADLIGHTS ---
+(instance LEDLights Headlights)
+(instance MatrixLEDLights Headlights)
+
+; --- ROOF ---
+(instance CarbonRoof Roof)
+(instance GlassRoof Roof)
+(instance PanoramicRoof Roof)
+
+; --- SEATS ---
+(instance HeatedSeats Seats)
+(instance HeatedSeats (equal isOptional 1))
+(instance HeatedSeats (equal hasPrice 500))
+
+(instance RegularSeats Seats)
+(instance RegularSeats (equal isOptional 0))
+(instance RegularSeats (equal hasPrice 0))
+
+(instance SportSeats Seats)
+
+; --- TECH ---
+(instance ElectricBoot Tech)
+(instance Camera Tech)
+(instance ACC Tech)
+(instance FullTechPack Tech)
+(instance StarterTechPack Tech)
+
+; --- TRIM ---
+(instance MetalTrim Trim)
+(instance WoodTrim Trim)
+(instance RegularLeather Trim)
+(instance NappaLeather Trim)
+
+; --- SAFETY ---
+(instance BlindSpotMonitor Safety)
+(instance BlindSpotMonitor (equal isOptional 1))
+(instance BlindSpotMonitor (equal hasPrice 300))
+
+(instance FullSafetySystem Safety)
+(instance FullSafetySystem (equal isOptional 1))
+(instance FullSafetySystem (equal hasPrice 900))
+
+(instance ParkingSensors Safety)
+(instance ParkingAssistant Safety)
+
+; --- PACKS & INCLUSIONS ---
+
+; Seats packs
+(related RegularSeats HeatedSeats isIncluded)
+(related HeatedSeats SportSeats isIncluded)
+
+; Light packs
+(related LEDLights MatrixLEDLights isIncluded)
+
+; Roof packs
+(related GlassRoof PanoramicRoof isIncluded)
+
+; Tech packs
+(related ElectricBoot StarterTechPack isIncluded)
+(related StarterTechPack FullTechPack isIncluded)
+(related Camera FullTechPack isIncluded)
+(related ACC FullTechPack isIncluded)
+
+; Trim packs
+(related MetalTrim RegularLeather isIncluded)
+(related WoodTrim NappaLeather isIncluded)
+
+; Safety Pack
+(related ParkingSensors ParkingAssistant isIncluded)
+(related ParkingAssistant FullSafetySystem isIncluded)
+(related BlindSpotMonitor FullSafetySystem isIncluded)
+
+; --- COMPATIBILITIES ---
+; we only define model-item compatibility with the topmost item
+; and infer item-item compatibility with lower items
+(related Taycan SportSeats isCompatibleCarItem)
+(related Taycan FullSafetySystem isCompatibleCarItem)
+(related Taycan NappaLeather isCompatibleCarItem)
+(related Taycan MatrixLEDLights isCompatibleCarItem)
+(related Taycan FullTechPack isCompatibleCarItem)
+(related Taycan PanoramicRoof isCompatibleCarItem)
+(related Taycan Wheels20 isCompatibleCarItem)
+(related Taycan Wheels21 isCompatibleCarItem)
+(related Taycan PearlescentPaint isCompatibleCarItem)
+
+(related Macan HeatedSeats isCompatibleCarItem)
+(related Macan ParkingAssistant isCompatibleCarItem)
+(related Macan RegularLeather isCompatibleCarItem)
+(related Macan LEDLights isCompatibleCarItem)
+(related Macan StarterTechPack isCompatibleCarItem)
+(related Macan CarbonRoof isCompatibleCarItem)
+(related Macan Wheels19 isCompatibleCarItem)
+(related Macan Wheels20 isCompatibleCarItem)
+(related Macan MetallicPaint isCompatibleCarItem)
+
+(execute-all-rules)
+(reexecute-all-rules)
+
+
+\end{lstlisting}
+
+\section{Ontology evaluation}
+\lstset{style=mystyle}
+\begin{lstlisting}[language=Octave]
+(abox-consistent?)
+(tbox-cyclic?)
+(tbox-coherent?)
+
+(realize-abox)
+(classify-tbox)
+
+(evaluate (length (all-individuals)))
+(evaluate (length (all-atomic-concepts)))
+(evaluate (length (all-roles)))
+(evaluate (length (all-rules)))
+
+(all-concept-assertions)
+(all-role-assertions)
+(all-constraints)
+
+(describe-tbox)
+(describe-abox)
+
+(taxonomy)
+
+(get-tbox-language)
+(get-abox-language)
+
+
+; large answer
+(related-individuals isCompatibleCarItem)
+(related-individuals isCompatibleItemItem)
+(related-individuals isIncluded)
+(individual-fillers Taycan isCompatibleCarItem)
+
+; manually defined
+(concept-disjoint? Wheels Tech) ; --> T
+(individuals-related? ParkingSensors FullSafetySystem isIncluded)
+
+; minilisp
+(evaluate (> (retrieve-individual-told-attribute-value 'HeatedSeats 'hasPrice (current-abox))
+(retrieve-individual-told-attribute-value 'RegularSeats 'hasPrice (current-abox))))
+
+; deduced
+(individuals-related? Taycan BlindSpotMonitor isCompatibleCarItem)
+(individuals-related? Taycan ParkingSensors isCompatibleCarItem)
+(individuals-related? BlindSpotMonitor Wheels19 isCompatibleItemItem)
+
+(retrieve-individual-told-attribute-value 'HeatedSeats 'isOptional (current-abox))
+
+; NRQL
+(get-nrql-version)
+(enable-nrql-warnings)
+(defquery is-interior (?x) (or (?x Seats) (?x Safety) (?x Tech) (?x Trim)))
+(defquery is-included (?x ?y) (?x ?y isIncluded))
+
+; all interior items
+(retrieve (?x) (?x is-interior))
+
+; items included in other items
+(retrieve (?x ?y) (?x ?y is-included))
+
+; interior trim for Taycan
+(defquery trim-options (?car ?trim) (and (?car CarType) (?trim Trim) (?car ?trim isCompatibleCarItem)))
+(retrieve (?trim) (Taycan ?trim trim-options))
+
+; models compatible with an item
+(defquery compat-cars (?car ?item) (and (?car CarType) (?item Item) (?car ?item isCompatibleCarItem)))
+(retrieve (?car) (?car SportSeats compat-cars))
+
+(all-queries)
+
+
+\end{lstlisting}
+
+\section{Verbalized Ontology}
+\lstset{style=mystyle}
+\begin{lstlisting}
+Every SYMPTOM HASCAUSE something that is not a VIRUS.
+Everything that HASCAUSE something that is not a VIRUS is a SYMPTOM.
+
+Every PREVENTION is something that is not a SYMPTOM and that is not a TREATMENT and that is not a VIRUS.
+
+Every PREVENTION HASVACCINE a VIRUS.
+
+No SYMPTOM is a VIRUS.
+
+Every TREATMENT is something that is not a SYMPTOM and that is not a VIRUS.
+
+Every TYPEA is an INFLUENZA.
+
+Every TYPEB is an INFLUENZA.
+
+Every TYPEC is an INFLUENZA.
+
+Every TYPED is an INFLUENZA.
+
+No VIRUS is a PREVENTION.
+
+No VIRUS is a SYMPTOM.
+
+Everything is something that CANSPREADBYDIRECTCONTACT nothing but VIRUS or that does not HASCAUSE a VIRUS.
+
+No PREVENTION is a SYMPTOM.
+
+No PREVENTION is a TREATMENT.
+
+No PREVENTION is a VIRUS.
+
+No SYMPTOM is a TREATMENT.
+
+No SYMPTOM is a VIRUS.
+
+No TREATMENT is a VIRUS.
+
+ANTIBIOTIC is a TREATMENT.
+
+ANTIVIRAL is a TREATMENT.
+
+CHICKENPOX is a VIRUS.
+
+COUGH is a SYMPTOM.
+
+FEVER is a SYMPTOM.
+
+INFLUENZA is a VIRUS.
+
+MEASLES is a VIRUS.
+
+RASH is a SYMPTOM.
+
+VACCINE is a PREVENTION.
+
+CHICKENPOX HASPREVENTION VACCINE.
+
+CHICKENPOX HASSYMPTOM RASH.
+
+INFLUENZA HASPREVENTION VACCINE.
+
+INFLUENZA HASSYMPTOM COUGH.
+
+INFLUENZA HASSYMPTOM FEVER.
+
+INFLUENZA HASTREATMENT ANTIVIRAL.
+
+MEASLES HASPREVENTION VACCINE.
+
+MEASLES HASSYMPTOM FEVER.
+
+MEASLES HASSYMPTOM RASH.
+
+Everything that CANSPREADBYDIRECTCONTACT something is something that CANSPREADBYDIRECTCONTACT nothing but VIRUS or that does not HASCAUSE a VIRUS.
+
+Everything that HASPREVENTION something is a VIRUS.
+
+Everything that HASSYMPTOM something is a VIRUS.
+
+Everything that HASTREATMENT something is a VIRUS.
+
+Everything that is HASPREVENTION by something is a PREVENTION.
+
+Everything that is HASSYMPTOM by something is a SYMPTOM.
+
+Everything that is HASTREATMENT by something is a TREATMENT.
+\end{lstlisting}
+
+\section{Python Code}
+\lstset{style=mystyle}
+\begin{lstlisting}[language=Python]
+from pracer.racer_client import RacerClient
+import random
+
+
+def main():
+    racer_client = RacerClient('127.0.0.1', 8088)
+    racer_client.connect()
+    racer_client.full_reset()
+    result = racer_client.racer_read_file_('\"D:/Facultate/An4/Sem2/KBS/RacerFiles/ontho.racer\"')
+    print(result.value)
+
+    for _ in range (15):
+        lines = open('viruses.txt').read().splitlines()
+        virus_name = random.choice(lines)
+        racer_client.instance_m(name= virus_name, concept= "Virus")
+    print(racer_client.concept_instances_m(concept_term="Virus"))
+    racer_client.disconnect()
+
+
+if __name__ == '__main__':
+    main()
+
+\end{lstlisting}
+
+\section{Ontology generated (indirectly) by FRED}
+\lstset{style=mystyle}
+\begin{lstlisting}
+(full-reset)
+
+(DEFINE-PRIMITIVE-ROLE hasContent) 
+(DEFINE-PRIMITIVE-ROLE hasQuality) 
+(DEFINE-PRIMITIVE-ROLE hasModality) 
+(DEFINE-PRIMITIVE-ROLE hasQuantifier) 
+(DEFINE-PRIMITIVE-ROLE begins) 
+(DEFINE-PRIMITIVE-ROLE Theme) 
+(DEFINE-PRIMITIVE-ROLE Recipient) 
+
+(IMPLIES Treat Event) 
+(DEFINE-CONCEPT Treat) 
+
+Avem antibiotic si antiviral ca concepte
+can be treated with ca si relatie
+
+
+(IMPLIES Antibiotic TOP) 
+(IMPLIES Event TOP) 
+(IMPLIES Antiviral TOP) 
+(IMPLIES Antibiotic (not Antiviral))
+
+(INSTANCE Only TOP) 
+(INSTANCE IN TOP) 
+(INSTANCE antibiotic Antibiotic) 
+(INSTANCE Treat TOP) 
+(INSTANCE antiviral Antiviral) 
+(INSTANCE Influenza TOP) 
+
+
+(define-rule (?z Antibiotic)
+	(and
+		(?x Only hasQuality)
+		(?y Treat)
+		
+))
+
+(run-all-rules)
+
+(tbox-coherent?)
+(abox-consistent?)
+
+\end{lstlisting}
+
+\end{document}
